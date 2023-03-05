@@ -8,16 +8,17 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-           theme: ThemeData(
-       primarySwatch: Colors.blue,
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
       ),
       home: const UserDataStartPage(),
+      routes: {
+        const UserDataStartPage().route: (context) => const UserDataStartPage(),
+      },
     );
   }
 }
-

@@ -7,6 +7,7 @@ import 'form_field_widget.dart';
 enum SingingCharacter { lafayette, jefferson }
 
 class UserDataStartPage extends StatefulWidget {
+  final String route = 'user data start page';
   const UserDataStartPage({Key? key}) : super(key: key);
 
   @override
@@ -28,8 +29,6 @@ class _UserDataStartPageState extends State<UserDataStartPage> {
       body: SafeArea(
         child: Center(
           child: SizedBox(
-            // height: Dimensions.screenHeight,
-            // width: Dimensions.screenWidth,
             child: Form(
                 key: _formKey,
                 child: Column(
@@ -38,7 +37,7 @@ class _UserDataStartPageState extends State<UserDataStartPage> {
                     /// Form fields
                     SizedBox(
                       height: Dimensions.height10 * 22,
-                      width: Dimensions.width10*15,
+                      width: Dimensions.width10 * 15,
                       child: ListView.builder(
                           itemCount: 3,
                           itemBuilder: (BuildContext context, int index) {
@@ -50,9 +49,10 @@ class _UserDataStartPageState extends State<UserDataStartPage> {
 
                     /// Gender
                     SizedBox(
-                      width: Dimensions.width10*20,
+                      width: Dimensions.width10 * 20,
                       height: Dimensions.height10 * 7,
-                      child: Column(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           SizedBox(
                             height: Dimensions.height10 * 3,
@@ -89,7 +89,9 @@ class _UserDataStartPageState extends State<UserDataStartPage> {
                         ],
                       ),
                     ),
-                    SizedBox(height: Dimensions.height10*5,),
+                    SizedBox(
+                      height: Dimensions.height10 * 5,
+                    ),
 
                     /// Submit button
                     ElevatedButton(

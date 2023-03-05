@@ -2,7 +2,7 @@ import 'package:flutter_calorie_app/utils/dimensions_util.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
 
 class FormFieldWidget extends StatefulWidget {
-  final hintText;
+  final String hintText;
   const FormFieldWidget({Key? key, required this.hintText}) : super(key: key);
 
   @override
