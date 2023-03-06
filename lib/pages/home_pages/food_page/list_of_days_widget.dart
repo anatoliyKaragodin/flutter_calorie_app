@@ -13,7 +13,7 @@ class ListOfDaysWidget extends StatefulWidget {
 class _ListOfDaysWidgetState extends State<ListOfDaysWidget> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(height: Dimensions.height10*20,
+    return SizedBox(height: Dimensions.height10*16,
     child: ListView.builder(
       scrollDirection: Axis.horizontal,
         itemCount: 30,
@@ -25,7 +25,7 @@ class _ListOfDaysWidgetState extends State<ListOfDaysWidget> {
           Container(
             decoration: BoxDecoration(color: MyColors.mainColor,
             borderRadius: MyParameters.borderRadius20),
-            width: Dimensions.width10*10,
+            width: Dimensions.width10*15,
             child: Column(
               children: [
                 /// Date

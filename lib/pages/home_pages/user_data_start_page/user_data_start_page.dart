@@ -40,7 +40,7 @@ class _UserDataStartPageState extends State<UserDataStartPage> {
                       height: Dimensions.height10 * 22,
                       width: Dimensions.width10 * 15,
                       child: ListView.builder(
-                          itemCount: 3,
+                          itemCount: listOfHints.length,
                           itemBuilder: (BuildContext context, int index) {
                             return FormFieldWidget(
                               hintText: listOfHints[index],

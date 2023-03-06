@@ -15,7 +15,7 @@ class _ListOfProductsWidgetState extends State<ListOfProductsWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: Dimensions.height10*50.7,
+      height: Dimensions.height10*51.7,
       child: ListView.builder(
           // scrollDirection: Axis.horizontal,
           itemCount: 30,
