@@ -2,6 +2,7 @@ import 'package:flutter_calorie_app/utils/library.dart';
 
 class StatisticsPage extends StatefulWidget {
   final String route = 'statistics page';
+  final String label = 'Statistics';
   const StatisticsPage({Key? key}) : super(key: key);
 
   @override

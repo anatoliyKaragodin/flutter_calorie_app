@@ -1,7 +1,7 @@
 import 'package:flutter_calorie_app/pages/home_pages/main_app_page/main_app_page.dart';
 import 'package:flutter_calorie_app/utils/dimensions_util.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
-import 'package:flutter_calorie_app/utils/my_borders.dart';
+import 'package:flutter_calorie_app/utils/my_parameters.dart';
 
 import 'form_field_widget.dart';
 
@@ -100,7 +100,7 @@ class _UserDataStartPageState extends State<UserDataStartPage> {
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
-                          borderRadius: MyBorders.borderRadius20,
+                          borderRadius: MyParameters.borderRadius20,
                         ),
                       )),
                       onPressed: () {

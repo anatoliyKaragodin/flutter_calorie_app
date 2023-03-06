@@ -1,6 +1,6 @@
 import 'package:flutter_calorie_app/utils/dimensions_util.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
-import 'package:flutter_calorie_app/utils/my_borders.dart';
+import 'package:flutter_calorie_app/utils/my_parameters.dart';
 
 import '../current_settings_page/current_settings.dart';
 import '../food_page/food_page.dart';
@@ -27,7 +27,7 @@ class _MainAppPageState extends State<MainAppPage> {
     return Scaffold(
       body: Center(
         child: SizedBox(
-          width: Dimensions.width10 * 15,
+          width: Dimensions.width10 * 17,
           height: Dimensions.height10 * 25,
           child: ListView.builder(
               itemCount: 4,
@@ -36,16 +36,17 @@ class _MainAppPageState extends State<MainAppPage> {
                   style: ButtonStyle(
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
-                    borderRadius: MyBorders.borderRadius20,
+                    borderRadius: MyParameters.borderRadius20,
                   ))),
                   onPressed: () {
                     Navigator.of(context).pushNamed(pages[index].route);
                   },
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Icon(Icons.accessibility_new_rounded),
-                      Text('data $index')
+                      SizedBox(width: Dimensions.width10,),
+                      Text(pages[index].label)
                     ],
                   ),
                 );

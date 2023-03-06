@@ -2,6 +2,7 @@ import 'package:flutter_calorie_app/utils/library.dart';
 
 class ProfilePage extends StatefulWidget {
   final String route = 'profile page';
+  final String label = 'Profile';
   const ProfilePage({Key? key}) : super(key: key);
 
   @override

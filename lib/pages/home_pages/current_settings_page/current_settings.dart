@@ -2,6 +2,7 @@ import 'package:flutter_calorie_app/utils/library.dart';
 
 class CurrentSettingsPage extends StatefulWidget {
   final String route = 'current settings page';
+  final String label = 'Current settings';
   const CurrentSettingsPage({Key? key}) : super(key: key);
 
   @override

@@ -1,7 +1,14 @@
+import 'package:flutter_calorie_app/pages/home_pages/food_page/list_of_products_widget.dart';
+import 'package:flutter_calorie_app/pages/home_pages/main_app_page/main_app_page.dart';
+import 'package:flutter_calorie_app/utils/dimensions_util.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
+import 'package:flutter_calorie_app/utils/my_parameters.dart';
+
+import 'list_of_days_widget.dart';
 
 class FoodPage extends StatefulWidget {
   final String route = 'food page';
+  final String label = 'Food';
   const FoodPage({Key? key}) : super(key: key);
 
   @override
@@ -11,6 +18,22 @@ class FoodPage extends StatefulWidget {
 class _FoodPageState extends State<FoodPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(onPressed: () {
+          Navigator.of(context).pushNamed(MainAppPage().route);
+        }, icon: MyParameters.backIcon),
+        title: Padding(
+          padding: EdgeInsets.only(left: Dimensions.width10*8),
+          child: Text(widget.label),
+        ),
+      ),
+      body: Column(
+        children: [
+          ListOfDaysWidget(),
+          ListOfProductsWidget()
+        ],
+      ),
+    );
   }
 }
