@@ -2,6 +2,11 @@ import 'package:flutter_calorie_app/utils/dimensions_util.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
 import 'package:flutter_calorie_app/utils/my_borders.dart';
 
+import '../current_settings_page/current_settings.dart';
+import '../food_page/food_page.dart';
+import '../profile_page/profile_page.dart';
+import '../statistics_page/statistics_page.dart';
+
 class MainAppPage extends StatefulWidget {
   final String route = 'main app page';
   const MainAppPage({Key? key}) : super(key: key);
@@ -11,7 +16,12 @@ class MainAppPage extends StatefulWidget {
 }
 
 class _MainAppPageState extends State<MainAppPage> {
-  // final List pages = [UserDataStartPage(), MainAppPage()];
+  final List pages = [
+    FoodPage(),
+    ProfilePage(),
+    StatisticsPage(),
+    CurrentSettingsPage()
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,12 +38,14 @@ class _MainAppPageState extends State<MainAppPage> {
                           RoundedRectangleBorder(
                     borderRadius: MyBorders.borderRadius20,
                   ))),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(pages[index].route);
+                  },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                  Icon(Icons.accessibility_new_rounded),
-                  Text('data $index')
+                      Icon(Icons.accessibility_new_rounded),
+                      Text('data $index')
                     ],
                   ),
                 );
