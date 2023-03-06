@@ -25,7 +25,7 @@ class _ListOfProductsWidgetState extends State<ListOfProductsWidget> {
               /// Product information
               child: InkWell(child:
               Container(
-                decoration: BoxDecoration(color: MyColors.mainColor,
+                decoration: BoxDecoration(color: MyColors.mainColor!.withOpacity(0.2),
                     borderRadius: MyParameters.borderRadius20),
                 width: Dimensions.width10*10,
                 child: Column(

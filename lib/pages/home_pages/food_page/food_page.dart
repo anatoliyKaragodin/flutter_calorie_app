@@ -38,7 +38,8 @@ class _FoodPageState extends State<FoodPage> {
           Container(
             decoration: BoxDecoration(
                 color: MyColors.mainColor,
-                borderRadius: MyParameters.borderRadius20),
+                // borderRadius: MyParameters.borderRadius20
+            ),
             height: Dimensions.height10 * 3,
             width: Dimensions.screenWidth,
             child: Center(child: Text('Products list')),
