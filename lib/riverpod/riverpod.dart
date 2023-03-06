@@ -5,3 +5,4 @@ final exerciseNumberProvider = StateProvider<int>((ref) {
   return 0;
 });
 
+final myAppPageIndexProvider = StateProvider<int>((ref) => 0);

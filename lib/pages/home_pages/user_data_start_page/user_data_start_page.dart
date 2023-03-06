@@ -1,3 +1,4 @@
+import 'package:flutter_calorie_app/pages/home_pages/main_app_page/main_app_page.dart';
 import 'package:flutter_calorie_app/utils/dimensions_util.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
 import 'package:flutter_calorie_app/utils/my_borders.dart';
@@ -111,6 +112,7 @@ class _UserDataStartPageState extends State<UserDataStartPage> {
                             const SnackBar(content: Text('Processing Data')),
                           );
                         }
+                        Navigator.of(context).pushNamed(MainAppPage().route);
                       },
                       child: const Text('Submit'),
                     ),
