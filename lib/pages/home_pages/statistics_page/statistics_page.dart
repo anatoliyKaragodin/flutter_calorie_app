@@ -40,7 +40,7 @@ class _StatisticsPageState extends State<StatisticsPage> {
           /// Weight graphic
           WeightGraphicWidget(),
           SizedBox(
-            height: Dimensions.height10 * 2,
+            height: Dimensions.height10 * 3,
           ),
 
           /// Mixed graphic

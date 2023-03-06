@@ -15,7 +15,7 @@ class _WeightGraphicWidgetState extends State<WeightGraphicWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text('Weight'),
+        Text('Weight change per month'),
         SizedBox(
           height: Dimensions.height10*20,
           child: Chart(
