@@ -15,25 +15,37 @@ class _WeightGraphicWidgetState extends State<WeightGraphicWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text('Weight change per month'),
+        Text('Weight monthly'),
         SizedBox(
-          height: Dimensions.height10*20,
-          child: Chart(
-            data: UserData.weightData,
-            variables: {
-              'date': Variable(
-                accessor: (Map map) => map['date'] as String,
+          height: Dimensions.height10 * 20,
+          child: Stack(
+            children: [
+
+              Chart(
+                data: UserData.weightData,
+                variables: {
+                  'date': Variable(
+                    accessor: (Map map) => map['date'].toString(),
+                  ),
+                  'value': Variable(
+                    accessor: (Map map) => map['value'] as num,
+                  ),
+                },
+                elements: [
+                  IntervalElement(
+                    size: SizeAttr(value: 9),
+                  )
+                ],
+                axes: [
+                  Defaults.horizontalAxis,
+                  Defaults.verticalAxis,
+                ],
               ),
-              'value': Variable(
-                accessor: (Map map) => map['value'] as num,
+              Padding(
+                padding: EdgeInsets.only(top: Dimensions.height10*18.8),
+                child: Container(height: Dimensions.height10,
+                  color: Theme.of(context).scaffoldBackgroundColor,),
               ),
-            },
-            elements: [IntervalElement(
-              size: SizeAttr(value: 9)
-            )],
-            axes: [
-              Defaults.horizontalAxis,
-              Defaults.verticalAxis,
             ],
           ),
         ),

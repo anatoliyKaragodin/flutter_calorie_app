@@ -11,18 +11,26 @@ class MixedGraphicWidget extends StatefulWidget {
 }
 
 class _MixedGraphicWidgetState extends State<MixedGraphicWidget> {
+  final listOfItemColors = [
+    Colors.red,
+    Colors.green,
+    Colors.blue,
+    Colors.purpleAccent,
+    Colors.amber
+  ];
+  final listOfLabels = ['calories', 'proteins', 'fats','carbohydrates'];
   @override
   Widget build(BuildContext context) {
-    return  /// Mixed graphic
-      Column(
-        children: [
-          Text('Calories, proteins, fats, carbohydrates per month'),
-          Container(
-            margin: const EdgeInsets.only(top: 10),
-            width: Dimensions.width10*35,
-            height: Dimensions.height10*30,
-            child: Chart(
-              // padding: (_) => const EdgeInsets.fromLTRB(40, 5, 10, 40),
+    /// Mixed graphic
+    return Column(
+      children: [
+        Text('Calories, proteins, fats, carbohydrates monthly'),
+        Container(
+          margin: const EdgeInsets.only(top: 10),
+          width: Dimensions.width10 * 35,
+          height: Dimensions.height10 * 30,
+          child: Stack(children: [
+            Chart(
               data: UserData.mixedData,
               variables: {
                 'index': Variable(
@@ -35,27 +43,73 @@ class _MixedGraphicWidgetState extends State<MixedGraphicWidget> {
                   accessor: (Map map) => map['value'] as num,
                 ),
               },
-              // marks: [
-              //   IntervalMark(
-              //     position: Varset('index') * Varset('value') / Varset('type'),
-              //     color: ColorEncode(variable: 'type', values: Defaults.colors10),
-              //     size: SizeEncode(value: 2),
-              //     modifiers: [DodgeSizeModifier()],
-              //   )
-              // ],
               axes: [
                 Defaults.horizontalAxis..tickLine = TickLine(),
                 Defaults.verticalAxis,
               ],
-              elements: [IntervalElement(
-                  size: SizeAttr(value: 1),
-                  color: ColorAttr(variable: 'type', values: [Colors.red, Colors.green, Colors.blue, Colors.purpleAccent, Colors.amber]),
-                  modifiers: [DodgeModifier()],
-                  position: Varset('index') * Varset('value') / Varset('type')
-              )],
+              elements: [
+                IntervalElement(
+                    size: SizeAttr(value: 1),
+                    color: ColorAttr(variable: 'type', values: listOfItemColors),
+                    modifiers: [DodgeModifier()],
+                    position:
+                        Varset('index') * Varset('value') / Varset('type'))
+              ],
             ),
-          ),
-        ],
-      );
+            Padding(
+              padding: EdgeInsets.only(top: Dimensions.height10 * 28.8),
+              child: Container(
+                height: Dimensions.height10,
+                color: Theme.of(context).scaffoldBackgroundColor,
+              ),
+            ),
+          ]),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+          Column(
+            children: [
+            Container(
+              height: Dimensions.height10,
+              width: Dimensions.width10,
+              decoration: BoxDecoration(color: listOfItemColors[0]),
+            ),
+            SizedBox(height: Dimensions.height10,),
+            Text(listOfLabels[0])
+          ],),
+          Column(
+            children: [
+              Container(
+                height: Dimensions.height10,
+                width: Dimensions.width10,
+                decoration: BoxDecoration(color: listOfItemColors[1]),
+              ),
+              SizedBox(height: Dimensions.height10,),
+              Text(listOfLabels[1])
+            ],),
+          Column(
+            children: [
+              Container(
+                height: Dimensions.height10,
+                width: Dimensions.width10,
+                decoration: BoxDecoration(color: listOfItemColors[2]),
+              ),
+              SizedBox(height: Dimensions.height10,),
+              Text(listOfLabels[2])
+            ],),
+          Column(
+            children: [
+              Container(
+                height: Dimensions.height10,
+                width: Dimensions.width10,
+                decoration: BoxDecoration(color: listOfItemColors[3]),
+              ),
+              SizedBox(height: Dimensions.height10,),
+              Text(listOfLabels[3])
+            ],)
+        ],)
+      ],
+    );
   }
 }
