@@ -11,6 +11,7 @@ export 'package:flutter/services.dart';
 export 'package:table_calendar/table_calendar.dart';
 export 'package:jiffy/jiffy.dart';
 export 'package:get/get_navigation/src/root/get_material_app.dart';
+export 'package:graphic/graphic.dart';
 
 /// Webview
 export 'package:advertising_id/advertising_id.dart';

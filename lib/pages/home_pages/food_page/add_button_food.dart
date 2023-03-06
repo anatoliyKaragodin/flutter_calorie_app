@@ -5,6 +5,7 @@ import '../../../utils/dimensions_util.dart';
 import '../../../utils/my_parameters.dart';
 
 class AddButton extends StatefulWidget {
+  final String label = 'Add product';
   const AddButton({Key? key}) : super(key: key);
 
   @override
@@ -27,6 +28,17 @@ class _AddButtonState extends State<AddButton> {
             context: context,
             builder: (context) {
               return Scaffold(
+                appBar: AppBar(
+                  leading: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: MyParameters.backIcon),
+                  title: Padding(
+                    padding: EdgeInsets.only(left: Dimensions.width10 * 5),
+                    child: Text(widget.label),
+                  ),
+                ),
                 body: Center(
                   child: Container(
                     height: Dimensions.height10 * 50,

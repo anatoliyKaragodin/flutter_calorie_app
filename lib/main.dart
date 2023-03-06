@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: FoodPage().route,
+      initialRoute: StatisticsPage().route,
       routes: {
         const UserDataStartPage().route: (context) => const UserDataStartPage(),
         const MainAppPage().route: (context) => const MainAppPage(),
@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
         const ProfilePage().route: (context) => const ProfilePage(),
         const CurrentSettingsPage().route: (context) => const CurrentSettingsPage(),
         const StatisticsPage().route: (context) => const StatisticsPage(),
+
       },
     );
   }

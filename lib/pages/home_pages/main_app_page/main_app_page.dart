@@ -27,27 +27,30 @@ class _MainAppPageState extends State<MainAppPage> {
     return Scaffold(
       body: Center(
         child: SizedBox(
-          width: Dimensions.width10 * 17,
-          height: Dimensions.height10 * 25,
+          width: Dimensions.width10 * 18,
+          height: Dimensions.height10 * 28,
           child: ListView.builder(
               itemCount: 4,
               itemBuilder: (BuildContext context, int index) {
-                return ElevatedButton(
-                  style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                    borderRadius: MyParameters.borderRadius20,
-                  ))),
-                  onPressed: () {
-                    Navigator.of(context).pushNamed(pages[index].route);
-                  },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Icon(Icons.accessibility_new_rounded),
-                      SizedBox(width: Dimensions.width10,),
-                      Text(pages[index].label)
-                    ],
+                return Padding(
+                  padding: EdgeInsets.all(Dimensions.height10/2),
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                            RoundedRectangleBorder(
+                      borderRadius: MyParameters.borderRadius20,
+                    ))),
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(pages[index].route);
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(Icons.accessibility_new_rounded),
+                        SizedBox(width: Dimensions.width10,),
+                        Text(pages[index].label)
+                      ],
+                    ),
                   ),
                 );
               }),
