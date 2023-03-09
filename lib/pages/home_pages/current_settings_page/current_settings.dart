@@ -1,3 +1,4 @@
+import 'package:flutter_calorie_app/DB/user_data/user_data.dart';
 import 'package:flutter_calorie_app/pages/home_pages/current_settings_page/add_button_settings.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
 
@@ -41,9 +42,9 @@ class _CurrentSettingsPageState extends State<CurrentSettingsPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
 
-              Text('Height: 178 cm'),
-              Text('Weight: 91 kg'),
-              Text('Age: 34'),
+              Text('Height: $currentUserHeight cm'),
+              Text('Weight: $currentUserWeight kg'),
+              Text('Age: $currentUserAge'),
             ],
           ),
         ),

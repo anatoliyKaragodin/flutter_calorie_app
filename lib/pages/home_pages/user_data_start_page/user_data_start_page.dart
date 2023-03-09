@@ -1,3 +1,4 @@
+import 'package:flutter_calorie_app/DB/user_data/user_data.dart';
 import 'package:flutter_calorie_app/pages/home_pages/main_app_page/main_app_page.dart';
 import 'package:flutter_calorie_app/riverpod/riverpod.dart';
 import 'package:flutter_calorie_app/utils/dimensions_util.dart';
@@ -163,11 +164,15 @@ class _UserDataStartPageState extends ConsumerState<UserDataStartPage> {
                           print(
                               '${listOfTextControllers[0].text} ${listOfTextControllers[1].text} ${listOfTextControllers[2].text}');
 
-                          /// Change riverpod
-                          ref.read(userStartGenderProvider.notifier).update((state) => _isMale);
-                          ref.read(userStartHeightProvider.notifier).update((state) => int.parse(listOfTextControllers[0].text));
-                          ref.read(userStartWeightProvider.notifier).update((state) => double.parse(listOfTextControllers[1].text));
-                          ref.read(userStartAgeProvider.notifier).update((state) => int.parse(listOfTextControllers[2].text));
+                          /// Change user data
+                          startUserGenger = _isMale;
+                          startUserHeight = int.parse(listOfTextControllers[0].text);
+                          startUserWeight = double.parse(listOfTextControllers[1].text);
+                          startUserAge = int.parse(listOfTextControllers[2].text);
+                          /// Current data
+                          currentUserHeight = int.parse(listOfTextControllers[0].text);
+                          currentUserWeight = double.parse(listOfTextControllers[1].text);
+                          currentUserAge = int.parse(listOfTextControllers[2].text);
                           /// Add user data to DB
                           UserDataModel userData = UserDataModel(
                               createdTime: DateTime.now(),
@@ -175,7 +180,9 @@ class _UserDataStartPageState extends ConsumerState<UserDataStartPage> {
                               height: int.parse(listOfTextControllers[0].text),
                               weight: double.parse(listOfTextControllers[1].text),
                               isMale: _isMale);
-                         var id = await DBHelper.instance.createUserStartData(userData);
+                         var id = await DBHelper.instance.createUserData(tableUserDataStart ,userData);
+                         await DBHelper.instance.createUserData(tableUserData, userData);
+
                          print('Create user data with ID: $id');
 
                           /// Go to MainAppPage()

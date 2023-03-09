@@ -56,18 +56,18 @@ class DBHelper {
   }
 
   /// Create user start data
-  Future<UserDataModel> createUserStartData(UserDataModel userData) async {
+  Future<UserDataModel> createUserData(String tableName, UserDataModel userData) async {
     final db = await instance.database;
-    final id = await db.insert(tableUserDataStart, userData.toMap());
+    final id = await db.insert(tableName, userData.toMap());
     return userData.copy(id: id);
   }
 
   /// Read user start data
-  Future<UserDataModel> readUserDataStart(int id) async {
+  Future<UserDataModel?> readUserData(String tableName, int id) async {
     final db = await instance.database;
 
     final maps = await db.query(
-      tableUserDataStart,
+      tableName,
       columns: UserDataModelFields.values,
       where: '${UserDataModelFields.columnId} = ?',
       whereArgs: [id],
@@ -75,15 +75,15 @@ class DBHelper {
     if (maps.isNotEmpty) {
       return UserDataModel.fromMap(maps.first);
     } else {
-      throw Exception('ID $id not found');
+      return null;
     }
   }
 
   /// Get all user start data
-  Future<List<UserDataModel>> readAllUserStartData() async {
+  Future<List<UserDataModel>> readAllUserData() async {
     final db = await instance.database;
 
-    final results = await db.query(tableUserDataStart);
+    final results = await db.query(tableUserData);
 
     return results.map((map) => UserDataModel.fromMap(map)).toList();
   }

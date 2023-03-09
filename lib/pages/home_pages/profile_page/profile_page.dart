@@ -1,15 +1,11 @@
 import 'package:flutter_calorie_app/utils/library.dart';
 import 'package:flutter_calorie_app/utils/my_colors.dart';
 
+import '../../../DB/user_data/user_data.dart';
 import '../../../riverpod/riverpod.dart';
 import '../../../utils/dimensions_util.dart';
 import '../../../utils/my_parameters.dart';
 import '../main_app_page/main_app_page.dart';
-
-int startUserHeight = 0;
-double startUserWeight = 0;
-int startUserAge = 0;
-bool startUserGenger = true;
 
 class ProfilePage extends ConsumerStatefulWidget {
   final String route = 'profile page';
@@ -67,9 +63,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text('Current:'),
-                      Text('Height: 178 cm'),
-                      Text('Weight: 91 kg'),
-                      Text('Age: 34'),
+                      Text('Height: $currentUserHeight cm'),
+                      Text('Weight: $currentUserWeight kg'),
+                      Text('Age: $currentUserAge'),
                     ],
                   ),
                 ],

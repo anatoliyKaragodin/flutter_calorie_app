@@ -1,3 +1,12 @@
+int startUserHeight = 0;
+double startUserWeight = 0;
+int startUserAge = 0;
+bool startUserGenger = true;
+
+int currentUserHeight = 0;
+double currentUserWeight = 0;
+int currentUserAge = 0;
+
 class UserData {
 
   static List<Map<String, Object>> mixedData = [
