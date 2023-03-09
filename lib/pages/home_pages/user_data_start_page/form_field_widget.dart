@@ -1,15 +1,16 @@
 import 'package:flutter_calorie_app/utils/dimensions_util.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
 
-class FormFieldWidget extends StatefulWidget {
+class FormFieldWidget extends ConsumerStatefulWidget {
   final String hintText;
-  const FormFieldWidget({Key? key, required this.hintText}) : super(key: key);
+  final StateProvider? onSaved;
+  const FormFieldWidget({Key? key, required this.hintText, this.onSaved}) : super(key: key);
 
   @override
-  State<FormFieldWidget> createState() => _FormFieldWidgetState();
+  ConsumerState<FormFieldWidget> createState() => _FormFieldWidgetState();
 }
 
-class _FormFieldWidgetState extends State<FormFieldWidget> {
+class _FormFieldWidgetState extends ConsumerState<FormFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -18,11 +19,14 @@ class _FormFieldWidgetState extends State<FormFieldWidget> {
       child: Column(
         children: [
           TextFormField(
+            onChanged: (value) {
+             ref.watch(widget.onSaved!.notifier).update((state) => value);
+            },
             decoration: InputDecoration(hintText: widget.hintText),
             // The validator receives the text that the user has entered.
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return 'Please enter some text';
+                return 'Please enter data';
               }
               return null;
             },

@@ -1,3 +1,4 @@
+import 'package:flutter_calorie_app/main.dart';
 import 'package:flutter_calorie_app/pages/home_pages/user_data_start_page/user_data_start_page.dart';
 import 'package:flutter_calorie_app/riverpod/riverpod.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_calorie_app/utils/library.dart';
 import 'home_pages/main_app_page/main_app_page.dart';
 
 class AppHomePage extends ConsumerStatefulWidget {
+  final String route = 'app home page';
   const AppHomePage({Key? key}) : super(key: key);
 
   @override
@@ -16,6 +18,6 @@ class _AppHomePageState extends ConsumerState<AppHomePage> {
   @override
   Widget build(BuildContext context) {
     final index = ref.watch(myAppPageIndexProvider);
-    return pages.elementAt(index);
+    return pages.elementAt(appHomePageIndex);
   }
 }

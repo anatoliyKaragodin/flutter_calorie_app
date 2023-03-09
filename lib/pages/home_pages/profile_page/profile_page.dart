@@ -1,22 +1,33 @@
 import 'package:flutter_calorie_app/utils/library.dart';
 import 'package:flutter_calorie_app/utils/my_colors.dart';
 
+import '../../../riverpod/riverpod.dart';
 import '../../../utils/dimensions_util.dart';
 import '../../../utils/my_parameters.dart';
 import '../main_app_page/main_app_page.dart';
 
-class ProfilePage extends StatefulWidget {
+int startUserHeight = 0;
+double startUserWeight = 0;
+int startUserAge = 0;
+bool startUserGenger = true;
+
+class ProfilePage extends ConsumerStatefulWidget {
   final String route = 'profile page';
   final String label = 'Profile';
   const ProfilePage({Key? key}) : super(key: key);
 
   @override
-  State<ProfilePage> createState() => _ProfilePageState();
+  ConsumerState<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _ProfilePageState extends ConsumerState<ProfilePage> {
   @override
   Widget build(BuildContext context) {
+    /// Riverpod watchers
+    final userStartGender = ref.watch(userStartGenderProvider);
+    final userStartAge = ref.watch(userStartAgeProvider);
+    final userStartHeight = ref.watch(userStartHeightProvider);
+    final userStartWeight = ref.watch(userStartWeightProvider);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -39,7 +50,7 @@ class _ProfilePageState extends State<ProfilePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Text('Male'),
+              Text(startUserGenger ? 'Male' : 'Female'),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
@@ -47,9 +58,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text('Starting:'),
-                      Text('Height: 178 cm'),
-                      Text('Weight: 91 kg'),
-                      Text('Age: 34'),
+                      Text('Height: $startUserHeight cm'),
+                      Text('Weight: $startUserWeight kg'),
+                      Text('Age: $startUserAge'),
                     ],
                   ),
                   Column(

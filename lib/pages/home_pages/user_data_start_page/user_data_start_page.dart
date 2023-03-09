@@ -1,31 +1,45 @@
 import 'package:flutter_calorie_app/pages/home_pages/main_app_page/main_app_page.dart';
+import 'package:flutter_calorie_app/riverpod/riverpod.dart';
 import 'package:flutter_calorie_app/utils/dimensions_util.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
 import 'package:flutter_calorie_app/utils/my_parameters.dart';
 
+import '../../../DB/db_helper/db_helper.dart';
+import '../../../DB/models/user_data_model.dart';
 import 'form_field_widget.dart';
 
-enum SingingCharacter { lafayette, jefferson }
+// enum Gender { male, female }
 
-class UserDataStartPage extends StatefulWidget {
+class UserDataStartPage extends ConsumerStatefulWidget {
   final String route = 'user data start page';
   const UserDataStartPage({Key? key}) : super(key: key);
 
   @override
-  State<UserDataStartPage> createState() => _UserDataStartPageState();
+  ConsumerState<UserDataStartPage> createState() => _UserDataStartPageState();
 }
 
-class _UserDataStartPageState extends State<UserDataStartPage> {
+class _UserDataStartPageState extends ConsumerState<UserDataStartPage> {
   final _formKey = GlobalKey<FormState>();
   final List<String> listOfHints = [
-    'Enter height',
-    'Enter weight',
+    'Enter height(cm)',
+    'Enter weight(kg)',
     'Enter age'
   ];
-  SingingCharacter? _character = SingingCharacter.lafayette;
+  final List<TextEditingController> listOfTextControllers = [
+    TextEditingController(),
+    TextEditingController(),
+    TextEditingController(),
+  ];
+
+  bool _isMale = true;
 
   @override
   Widget build(BuildContext context) {
+    final List listOnSavedProviders = [
+      userStartHeightProvider,
+      userStartWeightProvider,
+      userStartAgeProvider
+    ];
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -39,13 +53,50 @@ class _UserDataStartPageState extends State<UserDataStartPage> {
                     SizedBox(
                       height: Dimensions.height10 * 22,
                       width: Dimensions.width10 * 15,
-                      child: ListView.builder(
-                          itemCount: listOfHints.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return FormFieldWidget(
-                              hintText: listOfHints[index],
-                            );
-                          }),
+                      child: SizedBox(
+                        // height: Dimensions.height10 * 7,
+                        // width: Dimensions.width10 * 10,
+                        child: Column(
+                          children: [
+                            TextFormField(
+                              controller: listOfTextControllers[0],
+                              decoration:
+                                  InputDecoration(hintText: listOfHints[0]),
+                              // The validator receives the text that the user has entered.
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return listOfHints[0];
+                                }
+                                return null;
+                              },
+                            ),
+                            TextFormField(
+                              controller: listOfTextControllers[1],
+                              decoration:
+                                  InputDecoration(hintText: listOfHints[1]),
+                              // The validator receives the text that the user has entered.
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return listOfHints[1];
+                                }
+                                return null;
+                              },
+                            ),
+                            TextFormField(
+                              controller: listOfTextControllers[2],
+                              decoration:
+                                  InputDecoration(hintText: listOfHints[2]),
+                              // The validator receives the text that the user has entered.
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return listOfHints[2];
+                                }
+                                return null;
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
 
                     /// Gender
@@ -60,12 +111,12 @@ class _UserDataStartPageState extends State<UserDataStartPage> {
                             width: Dimensions.width10 * 15,
                             child: ListTile(
                               title: const Text('Male'),
-                              leading: Radio<SingingCharacter>(
-                                value: SingingCharacter.lafayette,
-                                groupValue: _character,
-                                onChanged: (SingingCharacter? value) {
+                              leading: Radio<bool>(
+                                value: true,
+                                groupValue: _isMale,
+                                onChanged: (value) {
                                   setState(() {
-                                    _character = value;
+                                    _isMale = value!;
                                   });
                                 },
                               ),
@@ -76,12 +127,12 @@ class _UserDataStartPageState extends State<UserDataStartPage> {
                             width: Dimensions.width10 * 15,
                             child: ListTile(
                               title: const Text('Female'),
-                              leading: Radio<SingingCharacter>(
-                                value: SingingCharacter.jefferson,
-                                groupValue: _character,
-                                onChanged: (SingingCharacter? value) {
+                              leading: Radio<bool>(
+                                value: false,
+                                groupValue: _isMale,
+                                onChanged: (bool? value) {
                                   setState(() {
-                                    _character = value;
+                                    _isMale = false;
                                   });
                                 },
                               ),
@@ -103,19 +154,39 @@ class _UserDataStartPageState extends State<UserDataStartPage> {
                           borderRadius: MyParameters.borderRadius20,
                         ),
                       )),
-                      onPressed: () {
+                      onPressed: () async {
                         // Validate returns true if the form is valid, or false otherwise.
                         if (_formKey.currentState!.validate()) {
                           // If the form is valid, display a snackbar. In the real world,
                           // you'd often call a server or save the information in a database.
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Processing Data')),
-                          );
+                          /// Print entered texts
+                          print(
+                              '${listOfTextControllers[0].text} ${listOfTextControllers[1].text} ${listOfTextControllers[2].text}');
+
+                          /// Change riverpod
+                          ref.read(userStartGenderProvider.notifier).update((state) => _isMale);
+                          ref.read(userStartHeightProvider.notifier).update((state) => int.parse(listOfTextControllers[0].text));
+                          ref.read(userStartWeightProvider.notifier).update((state) => double.parse(listOfTextControllers[1].text));
+                          ref.read(userStartAgeProvider.notifier).update((state) => int.parse(listOfTextControllers[2].text));
+                          /// Add user data to DB
+                          UserDataModel userData = UserDataModel(
+                              createdTime: DateTime.now(),
+                              age: int.parse(listOfTextControllers[2].text),
+                              height: int.parse(listOfTextControllers[0].text),
+                              weight: double.parse(listOfTextControllers[1].text),
+                              isMale: _isMale);
+                         var id = await DBHelper.instance.createUserStartData(userData);
+                         print('Create user data with ID: $id');
+
+                          /// Go to MainAppPage()
+                          Navigator.of(context).pushNamed(MainAppPage().route);
                         }
-                        Navigator.of(context).pushNamed(MainAppPage().route);
                       },
                       child: const Text('Submit'),
                     ),
+                    TextButton(onPressed: () async {
+                      // await DBHelper().deleteTable(tableUserDataStart);
+                    }, child: Text('Clear table'))
                   ],
                 )),
           ),

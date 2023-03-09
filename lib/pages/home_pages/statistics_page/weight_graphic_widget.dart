@@ -1,6 +1,7 @@
+import 'package:flutter_calorie_app/DB/user_data/user_data.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
 
-import '../../../user_data/user_data.dart';
+
 import '../../../utils/dimensions_util.dart';
 
 class WeightGraphicWidget extends StatefulWidget {
