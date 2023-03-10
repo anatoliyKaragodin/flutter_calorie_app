@@ -2,6 +2,8 @@ import 'package:flutter_calorie_app/DB/user_data/user_data.dart';
 import 'package:flutter_calorie_app/pages/home_pages/current_settings_page/add_button_settings.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
 
+import '../../../DB/db_helper/db_helper.dart';
+import '../../../DB/models/user_data_model.dart';
 import '../../../utils/dimensions_util.dart';
 import '../../../utils/my_colors.dart';
 import '../../../utils/my_parameters.dart';
@@ -17,6 +19,18 @@ class CurrentSettingsPage extends StatefulWidget {
 }
 
 class _CurrentSettingsPageState extends State<CurrentSettingsPage> {
+  final _formKey = GlobalKey<FormState>();
+  final List<String> listOfHints = [
+    'Enter new height',
+    'Enter new weight',
+    'Enter new age',
+  ];
+  final List<TextEditingController> listOfTextControllers = [
+    TextEditingController(),
+    TextEditingController(),
+    TextEditingController(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +63,16 @@ class _CurrentSettingsPageState extends State<CurrentSettingsPage> {
           ),
         ),
       ),
-      floatingActionButton: AddButton(),
+      floatingActionButton: buildFloatingActionButton(context),
     );
+  }
+
+  FloatingActionButton buildFloatingActionButton(BuildContext context) {
+    return FloatingActionButton(
+      onPressed: () {
+    Navigator.of(context).pushNamed(AddButton().route);
+  },
+  child: Icon(Icons.add),
+  );
   }
 }

@@ -59,7 +59,9 @@ class _UserDataStartPageState extends ConsumerState<UserDataStartPage> {
                         // width: Dimensions.width10 * 10,
                         child: Column(
                           children: [
+                            /// Height
                             TextFormField(
+                              keyboardType: TextInputType.number,
                               controller: listOfTextControllers[0],
                               decoration:
                                   InputDecoration(hintText: listOfHints[0]),
@@ -71,7 +73,9 @@ class _UserDataStartPageState extends ConsumerState<UserDataStartPage> {
                                 return null;
                               },
                             ),
+                            /// Weight
                             TextFormField(
+                              keyboardType: TextInputType.number,
                               controller: listOfTextControllers[1],
                               decoration:
                                   InputDecoration(hintText: listOfHints[1]),
@@ -83,7 +87,9 @@ class _UserDataStartPageState extends ConsumerState<UserDataStartPage> {
                                 return null;
                               },
                             ),
+                            /// Age
                             TextFormField(
+                              keyboardType: TextInputType.number,
                               controller: listOfTextControllers[2],
                               decoration:
                                   InputDecoration(hintText: listOfHints[2]),
