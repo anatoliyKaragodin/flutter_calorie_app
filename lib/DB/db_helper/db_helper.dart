@@ -1,4 +1,4 @@
-
+import 'package:flutter_calorie_app/DB/models/product_model.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
 import '../models/user_data_model.dart';
 import 'constants.dart';
@@ -53,16 +53,32 @@ class DBHelper {
     ${UserDataModelFields.columnCreatedDate} $textType
     )
     ''');
+
+    /// Create product table
+    await db.execute('''
+    CREATE TABLE $tableProducts (
+    ${ProductModelFields.columnId} $idType,
+    ${ProductModelFields.columnLabel} $textType,
+    ${ProductModelFields.columnCalories} $doubleType,
+    ${ProductModelFields.columnProteins} $doubleType,
+    ${ProductModelFields.columnFats} $doubleType,
+    ${ProductModelFields.columnCarbohydrates} $doubleType,
+    ${ProductModelFields.columnCreatedDate} $textType
+    )
+    ''');
   }
 
-  /// Create user start data
-  Future<UserDataModel> createUserData(String tableName, UserDataModel userData) async {
+  /// USER DATA
+
+  /// Create user data
+  Future<UserDataModel> createUserData(
+      String tableName, UserDataModel userData) async {
     final db = await instance.database;
     final id = await db.insert(tableName, userData.toMap());
     return userData.copy(id: id);
   }
 
-  /// Read user start data
+  /// Read user data
   Future<UserDataModel?> readUserData(String tableName, int id) async {
     final db = await instance.database;
 
@@ -79,7 +95,7 @@ class DBHelper {
     }
   }
 
-  /// Get all user start data
+  /// Get all user data
   Future<List<UserDataModel>> readAllUserData() async {
     final db = await instance.database;
 
@@ -88,8 +104,8 @@ class DBHelper {
     return results.map((map) => UserDataModel.fromMap(map)).toList();
   }
 
-  /// Update user start data
-  Future<int> updateUserStartData(UserDataModel userData) async {
+  /// Update user data
+  Future<int> updateUserData(UserDataModel userData) async {
     final db = await instance.database;
 
     return db.update(tableUserDataStart, userData.toMap(),
@@ -104,79 +120,27 @@ class DBHelper {
         where: '${UserDataModelFields.columnId} = ?', whereArgs: [id]);
   }
 
+  /// Close DB
   Future close() async {
     final db = await instance.database;
     db.close();
   }
-}
 
-// class DBHelper {
-//   // static Database? db;
-//   //
-//   // Future<Database> get database async => db ??= await openDB();
-//
-//   Future<Database> openDB() async {
-//     var databasesPath = await getDatabasesPath();
-//     String path = '${databasesPath}/userDB.db';
-//     final database = await openDatabase(path, version: 1,
-//         onCreate: (Database db, int version) async {
-//       await db.execute('''
-// create table $tableUserDataStart (
-//   $columnId integer primary key autoincrement,
-//   $columnTitle text not null,
-//   $columnIsMale boolean not null,
-//   $columnAge integer not null,
-//   $columnHeight integer not null,
-//   $columnWeight float not null
-//   )
-// ''');
-//     });
-//     print('__________DB open in: $path');
-//     return database;
-//   }
-//
-//   Future<void> insertUserDataStart(UserDataModel userDataModel) async {
-//     final db = await openDB();
-//     await db.insert(tableUserDataStart, userDataModel.toMap());
-//     print('_________Insert userData: ${userDataModel.title}');
-//   }
-//
-//   Future<UserDataModel?> getUserDataStart(int id) async {
-//     final db = await openDB();
-//     List<Map> maps = await db.query(tableUserDataStart,
-//         columns: [
-//           columnId,
-//           columnIsMale,
-//           columnTitle,
-//           columnAge,
-//           columnHeight,
-//           columnWeight
-//         ],
-//         where: '$columnId = ?',
-//         whereArgs: [id]);
-//     if (maps.isNotEmpty) {
-//       return UserDataModel.fromMap(maps.first as Map<String, Object?>);
-//     }
-//     return null;
-//   }
-//
-//   // Future<int> delete(int id) async {
-//   //   return await db.delete(tableTodo, where: '$columnId = ?', whereArgs: [id]);
-//   // }
-//   //
-//   Future<void> updateUserDataStart(UserDataModel userDataModel) async {
-//     final db = await openDB();
-//     await db.update(tableUserDataStart, userDataModel.toMap(),
-//         where: '$columnId = ?', whereArgs: [1]);
-//   }
-//
-//   Future close() async {
-//     final db = await openDB();
-//     db.close();}
-//
-//   Future deleteTable(String table) async {
-//     final db = await openDB();
-//     db.delete(table);
-//     print('_______Delete table: $table');
-//   }
-// }
+  /// PRODUCT DATA
+
+  /// Create product data
+  Future<ProductModel> createProductData(ProductModel productData) async {
+    final db = await instance.database;
+    final id = await db.insert(tableProducts, productData.toMap());
+    return productData.copy(id: id);
+  }
+
+  /// Get all products data
+  Future<List<ProductModel>> readAllProductData() async {
+    final db = await instance.database;
+
+    final results = await db.query(tableProducts);
+
+    return results.map((map) => ProductModel.fromMap(map)).toList();
+  }
+}

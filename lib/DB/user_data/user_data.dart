@@ -1,3 +1,5 @@
+import '../models/product_model.dart';
+
 int startUserHeight = 0;
 double startUserWeight = 0;
 int startUserAge = 0;
@@ -8,7 +10,6 @@ double currentUserWeight = 0;
 int currentUserAge = 0;
 
 class UserData {
-
   static List<Map<String, Object>> mixedData = [
     {"type": "Email", "index": 0, "value": 120},
     {"type": "Email", "index": 1, "value": 132},
@@ -48,36 +49,40 @@ class UserData {
   ];
 
   static List<Map<String, Object>> weightData = [
-    { 'date': '01', 'value': 275 },
-    { 'date': '02', 'value': 115 },
-    { 'date': '03', 'value': 120 },
-    { 'date': '04', 'value': 350 },
-    { 'date': '05', 'value': 150 },
-    { 'date': '06', 'value': 275 },
-    { 'date': '07', 'value': 115 },
-    { 'date': '08', 'value': 120 },
-    { 'date': '09', 'value': 350 },
-    { 'date': '10', 'value': 150 },
-    { 'date': '11', 'value': 275 },
-    { 'date': '12', 'value': 115 },
-    { 'date': '13', 'value': 120 },
-    { 'date': '14', 'value': 350 },
-    { 'date': '15', 'value': 150 },
-    { 'date': '16', 'value': 275 },
-    { 'date': '17', 'value': 115 },
-    { 'date': '18', 'value': 120 },
-    { 'date': '19', 'value': 350 },
-    { 'date': '20', 'value': 150 },
-    { 'date': '21', 'value': 150 },
-    { 'date': '22', 'value': 275 },
-    { 'date': '23', 'value': 115 },
-    { 'date': '24', 'value': 120 },
-    { 'date': '25', 'value': 350 },
-    { 'date': '26', 'value': 150 },
-    { 'date': '27', 'value': 275 },
-    { 'date': '28', 'value': 115 },
-    { 'date': '29', 'value': 120 },
-    { 'date': '30', 'value': 350 },
-    { 'date': '31', 'value': 150 },
+    {'date': '01', 'value': 275},
+    {'date': '02', 'value': 115},
+    {'date': '03', 'value': 120},
+    {'date': '04', 'value': 350},
+    {'date': '05', 'value': 150},
+    {'date': '06', 'value': 275},
+    {'date': '07', 'value': 115},
+    {'date': '08', 'value': 120},
+    {'date': '09', 'value': 350},
+    {'date': '10', 'value': 150},
+    {'date': '11', 'value': 275},
+    {'date': '12', 'value': 115},
+    {'date': '13', 'value': 120},
+    {'date': '14', 'value': 350},
+    {'date': '15', 'value': 150},
+    {'date': '16', 'value': 275},
+    {'date': '17', 'value': 115},
+    {'date': '18', 'value': 120},
+    {'date': '19', 'value': 350},
+    {'date': '20', 'value': 150},
+    {'date': '21', 'value': 150},
+    {'date': '22', 'value': 275},
+    {'date': '23', 'value': 115},
+    {'date': '24', 'value': 120},
+    {'date': '25', 'value': 350},
+    {'date': '26', 'value': 150},
+    {'date': '27', 'value': 275},
+    {'date': '28', 'value': 115},
+    {'date': '29', 'value': 120},
+    {'date': '30', 'value': 350},
+    {'date': '31', 'value': 150},
   ];
+}
+
+class ProductsData {
+  static List<ProductModel> listProducts = [];
 }

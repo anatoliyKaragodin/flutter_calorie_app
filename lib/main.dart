@@ -2,6 +2,7 @@ import 'package:flutter_calorie_app/DB/models/user_data_model.dart';
 import 'package:flutter_calorie_app/pages/app_home_page.dart';
 import 'package:flutter_calorie_app/pages/home_pages/current_settings_page/add_button_settings.dart';
 import 'package:flutter_calorie_app/pages/home_pages/current_settings_page/current_settings.dart';
+import 'package:flutter_calorie_app/pages/home_pages/food_page/add_button_food.dart';
 import 'package:flutter_calorie_app/pages/home_pages/food_page/food_page.dart';
 import 'package:flutter_calorie_app/pages/home_pages/main_app_page/main_app_page.dart';
 import 'package:flutter_calorie_app/pages/home_pages/profile_page/profile_page.dart';
@@ -58,7 +59,9 @@ class MyApp extends StatelessWidget {
         const CurrentSettingsPage().route: (context) => const CurrentSettingsPage(),
         const StatisticsPage().route: (context) => const StatisticsPage(),
         const AppHomePage().route: (context) => const AppHomePage(),
-        const AddButton().route: (context) => const AddButton()
+        const AddButton().route: (context) => const AddButton(),
+        const FoodPage().route: (context) => const FoodPage(),
+        const AddButtonFood().route: (context) => const AddButtonFood(),
       },
     );
   }

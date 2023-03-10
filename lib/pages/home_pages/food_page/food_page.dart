@@ -47,7 +47,12 @@ class _FoodPageState extends State<FoodPage> {
           ListOfProductsWidget()
         ],
       ),
-      floatingActionButton: AddButton(),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.of(context).pushNamed(AddButtonFood().route);
+        },
+      ),
     );
   }
 }
