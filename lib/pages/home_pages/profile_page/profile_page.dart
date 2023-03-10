@@ -20,10 +20,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     /// Riverpod watchers
-    final userStartGender = ref.watch(userStartGenderProvider);
-    final userStartAge = ref.watch(userStartAgeProvider);
-    final userStartHeight = ref.watch(userStartHeightProvider);
-    final userStartWeight = ref.watch(userStartWeightProvider);
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(

@@ -89,9 +89,9 @@ class ProductsData {
   static List<ProductModel> listProducts = [];
   static List<ProductModel> listDayProducts = [];
 
-  void sortDyDay() {
+  void sortDyDay(int date) {
     for (var product in listProducts) {
-      if(Jiffy(product.createdDate).day == Jiffy().day) {
+      if(Jiffy(product.createdDate).date == date) {
         listDayProducts.add(product);
       }
     }

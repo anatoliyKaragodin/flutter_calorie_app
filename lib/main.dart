@@ -25,7 +25,7 @@ void main() async{
   var currentData = await DBHelper.instance.readAllUserData();
   /// Read all products
   ProductsData.listProducts = await DBHelper.instance.readAllProductData();
-  ProductsData().sortDyDay();
+  ProductsData().sortDyDay(Jiffy().date);
   if(startData?.id != null) {
     appHomePageIndex = 1;
     startUserGenger = startData!.isMale;

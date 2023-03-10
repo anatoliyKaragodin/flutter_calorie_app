@@ -5,5 +5,6 @@ class MyColors {
   static Color? bottomNavigationColor = Colors.cyan[100];
   static Color? whiteColor = Colors.white;
   static Color? whiteColor70 = Colors.white70;
-  static Color? fontGreyColor = Colors.black54;
+  static Color? blackColor54 = Colors.black54;
+  static Color? blackColor12 = Colors.black12;
 }

@@ -36,11 +36,7 @@ class _UserDataStartPageState extends ConsumerState<UserDataStartPage> {
 
   @override
   Widget build(BuildContext context) {
-    final List listOnSavedProviders = [
-      userStartHeightProvider,
-      userStartWeightProvider,
-      userStartAgeProvider
-    ];
+
     return Scaffold(
       body: SafeArea(
         child: Center(
