@@ -1,3 +1,4 @@
+import 'package:flutter_calorie_app/DB/user_data/user_data.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
 
 import '../../../utils/dimensions_util.dart';
@@ -18,7 +19,7 @@ class _ListOfProductsWidgetState extends State<ListOfProductsWidget> {
       height: Dimensions.height10*51.7,
       child: ListView.builder(
           // scrollDirection: Axis.horizontal,
-          itemCount: 30,
+          itemCount: ProductsData.listProducts.length,
           itemBuilder: (BuildContext context, int index) {
             return Padding(
               padding: EdgeInsets.all(Dimensions.width10),
@@ -34,31 +35,31 @@ class _ListOfProductsWidgetState extends State<ListOfProductsWidget> {
                     Padding(
                       padding: EdgeInsets.only(top: Dimensions.height10/2,
                           bottom: Dimensions.height10/2),
-                      child: Text('Bread'),
+                      child: Text(ProductsData.listProducts[index].label),
                     ),
                     /// Calories
                     Padding(
                       padding: EdgeInsets.only(top: Dimensions.height10/2,
                           bottom: Dimensions.height10/2),
-                      child: Text('Calories: 200'),
+                      child: Text('Calories: ${ProductsData.listProducts[index].calories.toString()} kcal'),
                     ),
                     /// Proteins
                     Padding(
                       padding: EdgeInsets.only(top: Dimensions.height10/2,
                           bottom: Dimensions.height10/2),
-                      child: Text('Proteins:'),
+                      child: Text('Proteins: ${ProductsData.listProducts[index].proteins.toString()} g'),
                     ),
                     /// Fats
                     Padding(
                       padding: EdgeInsets.only(top: Dimensions.height10/2,
                           bottom: Dimensions.height10/2),
-                      child: Text('Fats:'),
+                      child: Text('Fats: ${ProductsData.listProducts[index].fats.toString()} g'),
                     ),
                     /// Carbohydrates
                     Padding(
                       padding: EdgeInsets.only(top: Dimensions.height10/2,
                           bottom: Dimensions.height10/2),
-                      child: Text('Carbohydrates:'),
+                      child: Text('Carbohydrates: ${ProductsData.listProducts[index].carbohydrates.toString()} g'),
                     ),
                   ],
                 ),

@@ -23,6 +23,7 @@ void main() async{
   /// Read user start data
   var startData = await DBHelper.instance.readUserData(tableUserDataStart, 1);
   var currentData = await DBHelper.instance.readAllUserData();
+  ProductsData.listProducts = await DBHelper.instance.readAllProductData();
   if(startData?.id != null) {
     appHomePageIndex = 1;
     startUserGenger = startData!.isMale;

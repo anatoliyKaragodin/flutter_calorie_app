@@ -1,5 +1,6 @@
 import 'package:flutter_calorie_app/DB/db_helper/db_helper.dart';
 import 'package:flutter_calorie_app/DB/models/product_model.dart';
+import 'package:flutter_calorie_app/DB/user_data/user_data.dart';
 import 'package:flutter_calorie_app/pages/home_pages/food_page/food_page.dart';
 import 'package:flutter_calorie_app/pages/home_pages/user_data_start_page/form_field_widget.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
@@ -171,8 +172,8 @@ class _AddButtonFoodState extends State<AddButtonFood> {
                     /// Save product data
                     await DBHelper.instance.createProductData(productData);
                     /// Read all products data
-                    var listProducts = await DBHelper.instance.readAllProductData();
-                    print(listProducts.first.label);
+                    ProductsData.listProducts = await DBHelper.instance.readAllProductData();
+
 
                     Navigator.of(context).pushNamed(FoodPage().route);
                   }
