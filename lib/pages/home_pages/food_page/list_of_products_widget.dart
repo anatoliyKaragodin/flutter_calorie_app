@@ -15,11 +15,11 @@ class ListOfProductsWidget extends StatefulWidget {
 class _ListOfProductsWidgetState extends State<ListOfProductsWidget> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: Dimensions.height10*51.7,
+    return Expanded(
+      // height: Dimensions.height10*51.7,
       child: ListView.builder(
           // scrollDirection: Axis.horizontal,
-          itemCount: ProductsData.listProducts.length,
+          itemCount: ProductsData.listDayProducts.length,
           itemBuilder: (BuildContext context, int index) {
             return Padding(
               padding: EdgeInsets.all(Dimensions.width10),
@@ -41,25 +41,25 @@ class _ListOfProductsWidgetState extends State<ListOfProductsWidget> {
                     Padding(
                       padding: EdgeInsets.only(top: Dimensions.height10/2,
                           bottom: Dimensions.height10/2),
-                      child: Text('Calories: ${ProductsData.listProducts[index].calories.toString()} kcal'),
+                      child: Text('Calories: ${ProductsData.listDayProducts[index].calories.toString()} kcal'),
                     ),
                     /// Proteins
                     Padding(
                       padding: EdgeInsets.only(top: Dimensions.height10/2,
                           bottom: Dimensions.height10/2),
-                      child: Text('Proteins: ${ProductsData.listProducts[index].proteins.toString()} g'),
+                      child: Text('Proteins: ${ProductsData.listDayProducts[index].proteins.toString()} g'),
                     ),
                     /// Fats
                     Padding(
                       padding: EdgeInsets.only(top: Dimensions.height10/2,
                           bottom: Dimensions.height10/2),
-                      child: Text('Fats: ${ProductsData.listProducts[index].fats.toString()} g'),
+                      child: Text('Fats: ${ProductsData.listDayProducts[index].fats.toString()} g'),
                     ),
                     /// Carbohydrates
                     Padding(
                       padding: EdgeInsets.only(top: Dimensions.height10/2,
                           bottom: Dimensions.height10/2),
-                      child: Text('Carbohydrates: ${ProductsData.listProducts[index].carbohydrates.toString()} g'),
+                      child: Text('Carbohydrates: ${ProductsData.listDayProducts[index].carbohydrates.toString()} g'),
                     ),
                   ],
                 ),

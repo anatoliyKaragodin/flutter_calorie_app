@@ -16,7 +16,7 @@ class _ListOfDaysWidgetState extends State<ListOfDaysWidget> {
     return SizedBox(height: Dimensions.height10*16,
     child: ListView.builder(
       scrollDirection: Axis.horizontal,
-        itemCount: 30,
+        itemCount: Jiffy().daysInMonth,
         itemBuilder: (BuildContext context, int index) {
       return Padding(
         padding: EdgeInsets.all(Dimensions.width10),
@@ -32,7 +32,7 @@ class _ListOfDaysWidgetState extends State<ListOfDaysWidget> {
                 Padding(
                   padding: EdgeInsets.only(top: Dimensions.height10/2,
                   bottom: Dimensions.height10/2),
-                  child: Text('1 Monday'),
+                  child: Text('${index+1} ${Jiffy('${Jiffy().year}/${Jiffy().month}/${index+1}').EEEE}'),
                 ),
                 /// Calories
                 Padding(

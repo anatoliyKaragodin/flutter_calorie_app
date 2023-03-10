@@ -1,3 +1,5 @@
+import 'package:flutter_calorie_app/utils/library.dart';
+
 import '../models/product_model.dart';
 
 int startUserHeight = 0;
@@ -85,4 +87,13 @@ class UserData {
 
 class ProductsData {
   static List<ProductModel> listProducts = [];
+  static List<ProductModel> listDayProducts = [];
+
+  void sortDyDay() {
+    for (var product in listProducts) {
+      if(Jiffy(product.createdDate).day == Jiffy().day) {
+        listDayProducts.add(product);
+      }
+    }
+  }
 }
