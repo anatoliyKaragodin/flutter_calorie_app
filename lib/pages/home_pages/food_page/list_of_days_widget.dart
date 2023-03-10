@@ -15,6 +15,7 @@ class ListOfDaysWidget extends ConsumerStatefulWidget {
 class _ListOfDaysWidgetState extends ConsumerState<ListOfDaysWidget> {
   @override
   Widget build(BuildContext context) {
+    final products = ref.watch(selectedDayProductsProvider);
     final selectedDay = ref.watch(selectedDayProvider);
     return SizedBox(
       height: Dimensions.height10 * 16,
@@ -22,6 +23,10 @@ class _ListOfDaysWidgetState extends ConsumerState<ListOfDaysWidget> {
           scrollDirection: Axis.horizontal,
           itemCount: Jiffy().daysInMonth,
           itemBuilder: (BuildContext context, int index) {
+            double calories = 0;
+            for(var item in products) {
+              calories += item.calories;
+            }
             return Padding(
               padding: EdgeInsets.all(Dimensions.width10),
 
@@ -56,7 +61,7 @@ class _ListOfDaysWidgetState extends ConsumerState<ListOfDaysWidget> {
                         padding: EdgeInsets.only(
                             top: Dimensions.height10 / 2,
                             bottom: Dimensions.height10 / 2),
-                        child: Text('Calories: 200'),
+                        child: Text('Calories: $calories kcal'),
                       ),
 
                       /// Proteins
