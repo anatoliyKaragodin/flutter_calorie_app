@@ -1,3 +1,4 @@
+import 'package:flutter_calorie_app/DB/user_data/user_data.dart';
 import 'package:flutter_calorie_app/riverpod/riverpod.dart';
 import 'package:flutter_calorie_app/utils/dimensions_util.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
@@ -27,7 +28,10 @@ class _ListOfDaysWidgetState extends ConsumerState<ListOfDaysWidget> {
               /// Day information
               child: InkWell(
                 onTap: () {
+                  /// Change selected day
                   ref.read(selectedDayProvider.notifier).update((state) => index +1);
+                  /// Change selected day products
+                  ref.read(selectedDayProductsProvider.notifier).update((state) => ProductsData().sortByDay(index+1));
                 },
                 child: Container(
                   decoration: BoxDecoration(

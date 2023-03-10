@@ -1,3 +1,5 @@
+import 'package:flutter_calorie_app/DB/user_data/user_data.dart';
+import 'package:flutter_calorie_app/riverpod/riverpod.dart';
 import 'package:flutter_calorie_app/utils/dimensions_util.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
 import 'package:flutter_calorie_app/utils/my_parameters.dart';
@@ -7,15 +9,15 @@ import '../food_page/food_page.dart';
 import '../profile_page/profile_page.dart';
 import '../statistics_page/statistics_page.dart';
 
-class MainAppPage extends StatefulWidget {
+class MainAppPage extends ConsumerStatefulWidget {
   final String route = 'main app page';
   const MainAppPage({Key? key}) : super(key: key);
 
   @override
-  State<MainAppPage> createState() => _MainAppPageState();
+  ConsumerState<MainAppPage> createState() => _MainAppPageState();
 }
 
-class _MainAppPageState extends State<MainAppPage> {
+class _MainAppPageState extends ConsumerState<MainAppPage> {
   final List pages = [
     FoodPage(),
     ProfilePage(),
@@ -24,6 +26,7 @@ class _MainAppPageState extends State<MainAppPage> {
   ];
   @override
   Widget build(BuildContext context) {
+    final selectedDay = ref.watch(selectedDayProvider);
     return Scaffold(
       body: Center(
         child: SizedBox(
@@ -40,7 +43,9 @@ class _MainAppPageState extends State<MainAppPage> {
                             RoundedRectangleBorder(
                       borderRadius: MyParameters.borderRadius20,
                     ))),
-                    onPressed: () {
+                    onPressed: () async {
+                      var products = await ProductsData().sortByDay(selectedDay);
+                      ref.read(selectedDayProductsProvider.notifier).update((state) => products);
                       Navigator.of(context).pushNamed(pages[index].route);
                     },
                     child: Row(

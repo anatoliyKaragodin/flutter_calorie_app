@@ -89,11 +89,14 @@ class ProductsData {
   static List<ProductModel> listProducts = [];
   static List<ProductModel> listDayProducts = [];
 
-  void sortDyDay(int date) {
+  List<ProductModel> sortByDay(int date) {
+    List<ProductModel>? products = [];
     for (var product in listProducts) {
       if(Jiffy(product.createdDate).date == date) {
-        listDayProducts.add(product);
+        products.add(product);
       }
     }
+    return products;
   }
+
 }
