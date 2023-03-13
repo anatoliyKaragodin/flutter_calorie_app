@@ -1,8 +1,10 @@
 import 'package:flutter_calorie_app/DB/user_data/user_data.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
+import 'package:flutter_calorie_app/utils/my_colors.dart';
 
 
 import '../../../utils/dimensions_util.dart';
+import '../../../utils/my_parameters.dart';
 
 class WeightGraphicWidget extends StatefulWidget {
   const WeightGraphicWidget({Key? key}) : super(key: key);
@@ -16,7 +18,11 @@ class _WeightGraphicWidgetState extends State<WeightGraphicWidget> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text('Weight monthly'),
+        Text('Weight monthly', style: TextStyle(
+          color: MyColors.blackColor45,
+            fontSize: MyParameters.normalFontSize,
+            fontWeight: MyParameters.boldFont)),
+        SizedBox(height: Dimensions.height10,),
         SizedBox(
           height: Dimensions.height10 * 20,
           child: Stack(
@@ -34,6 +40,7 @@ class _WeightGraphicWidgetState extends State<WeightGraphicWidget> {
                 },
                 elements: [
                   IntervalElement(
+                    color: ColorAttr(value: MyColors.mainColor200),
                     size: SizeAttr(value: 6),
                   )
                 ],

@@ -13,13 +13,21 @@ class ListOfDaysWidget extends ConsumerStatefulWidget {
 }
 
 class _ListOfDaysWidgetState extends ConsumerState<ListOfDaysWidget> {
+  final normalTextStyle = TextStyle(
+      color: MyColors.blackColor45,
+      fontSize: MyParameters.normalFontSize,
+      fontWeight: MyParameters.boldFont);
+  final bigTextStyle = TextStyle(
+      color: MyColors.blackColor45,
+      fontSize: MyParameters.bigFontSize,
+      fontWeight: MyParameters.boldFont);
   @override
   Widget build(BuildContext context) {
     var listOfDayData = ProductsData().calcByDay();
 
     final selectedDay = ref.watch(selectedDayProvider);
     return SizedBox(
-      height: Dimensions.height10 * 16,
+      height: Dimensions.height10 * 18,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: Jiffy().daysInMonth,
@@ -43,10 +51,10 @@ class _ListOfDaysWidgetState extends ConsumerState<ListOfDaysWidget> {
                 child: Container(
                   decoration: BoxDecoration(
                       color: index + 1 == selectedDay
-                          ? MyColors.mainColor
-                          : MyColors.mainColor!.withOpacity(0.2),
+                          ? MyColors.mainColor200!.withOpacity(0.6)
+                          : MyColors.mainColor200!.withOpacity(0.1),
                       borderRadius: MyParameters.borderRadius20),
-                  width: Dimensions.width10 * 15,
+                  width: Dimensions.width10 * 18,
                   child: Column(
                     children: [
                       /// Date
@@ -55,7 +63,7 @@ class _ListOfDaysWidgetState extends ConsumerState<ListOfDaysWidget> {
                             top: Dimensions.height10 / 2,
                             bottom: Dimensions.height10 / 2),
                         child: Text(
-                            '${index + 1} ${Jiffy('${Jiffy().year}/${Jiffy().month}/${index + 1}').EEEE}'),
+                            '${index + 1} ${Jiffy('${Jiffy().year}/${Jiffy().month}/${index + 1}').EEEE}', style: bigTextStyle,),
                       ),
 
                       /// Calories
@@ -64,7 +72,7 @@ class _ListOfDaysWidgetState extends ConsumerState<ListOfDaysWidget> {
                             top: Dimensions.height10 / 2,
                             bottom: Dimensions.height10 / 2),
                         child: Text(
-                            'Calories: ${listOfDayData[index]['calories']} kcal'),
+                            'Calories: ${listOfDayData[index]['calories']} kcal', style: normalTextStyle,),
                       ),
 
                       /// Proteins
@@ -73,7 +81,7 @@ class _ListOfDaysWidgetState extends ConsumerState<ListOfDaysWidget> {
                             top: Dimensions.height10 / 2,
                             bottom: Dimensions.height10 / 2),
                         child: Text(
-                            'Proteins: ${listOfDayData[index]['proteins']} g'),
+                            'Proteins: ${listOfDayData[index]['proteins']} g', style: normalTextStyle,),
                       ),
 
                       /// Fats
@@ -81,7 +89,7 @@ class _ListOfDaysWidgetState extends ConsumerState<ListOfDaysWidget> {
                         padding: EdgeInsets.only(
                             top: Dimensions.height10 / 2,
                             bottom: Dimensions.height10 / 2),
-                        child: Text('Fats: ${listOfDayData[index]['fats']} g'),
+                        child: Text('Fats: ${listOfDayData[index]['fats']} g', style: normalTextStyle,),
                       ),
 
                       /// Carbohydrates
@@ -90,7 +98,7 @@ class _ListOfDaysWidgetState extends ConsumerState<ListOfDaysWidget> {
                             top: Dimensions.height10 / 2,
                             bottom: Dimensions.height10 / 2),
                         child: Text(
-                            'Carbohydrates: ${listOfDayData[index]['carbohydrates']} g'),
+                            'Carbohydrates: ${listOfDayData[index]['carbohydrates']} g', style: normalTextStyle,),
                       ),
                     ],
                   ),

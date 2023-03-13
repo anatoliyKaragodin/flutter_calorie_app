@@ -1,11 +1,11 @@
 import 'package:flutter_calorie_app/pages/home_pages/current_settings_page/current_settings.dart';
-import 'package:flutter_calorie_app/pages/home_pages/user_data_start_page/form_field_widget.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
 
 import '../../../DB/db_helper/db_helper.dart';
 import '../../../DB/models/user_data_model.dart';
 import '../../../DB/user_data/user_data.dart';
 import '../../../utils/dimensions_util.dart';
+import '../../../utils/my_colors.dart';
 import '../../../utils/my_parameters.dart';
 
 class AddButton extends StatefulWidget {
@@ -34,6 +34,7 @@ class _AddButtonState extends State<AddButton> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: MyColors.mainColor200,
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
@@ -120,11 +121,15 @@ class _AddButtonState extends State<AddButton> {
               /// Update button
               ElevatedButton(
                 style: ButtonStyle(
-                    shape: MaterialStateProperty.all<
-                        RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: MyParameters.borderRadius20,
-                        ))),
+
+                    backgroundColor:
+                    MaterialStatePropertyAll(MyColors.mainColor200),
+                    shape:
+                    MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: MyParameters.borderRadius20,
+                      ),
+                    )),
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
                     /// Current data
@@ -146,10 +151,9 @@ class _AddButtonState extends State<AddButton> {
                   }
                 },
                 child: Text(
-                  'Update',
-                  style: TextStyle(
-                    // fontSize: Dimensions.height10 * 3
-                  ),
+                  'Update', style: TextStyle(
+                    fontSize: MyParameters.bigFontSize,
+                    fontWeight: MyParameters.boldFont)
                 ),
               ),
             ],

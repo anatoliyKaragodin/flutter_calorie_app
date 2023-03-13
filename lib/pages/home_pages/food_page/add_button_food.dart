@@ -7,6 +7,7 @@ import 'package:flutter_calorie_app/utils/library.dart';
 
 import '../../../riverpod/riverpod.dart';
 import '../../../utils/dimensions_util.dart';
+import '../../../utils/my_colors.dart';
 import '../../../utils/my_parameters.dart';
 
 class AddButtonFood extends ConsumerStatefulWidget {
@@ -40,6 +41,7 @@ class _AddButtonFoodState extends ConsumerState<AddButtonFood> {
     final selectedDay = ref.watch(selectedDayProvider);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: MyColors.mainColor200,
         leading: IconButton(
             onPressed: () {
               Navigator.pop(context);
@@ -158,10 +160,15 @@ class _AddButtonFoodState extends ConsumerState<AddButtonFood> {
               /// Add button
               ElevatedButton(
                 style: ButtonStyle(
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                  borderRadius: MyParameters.borderRadius20,
-                ))),
+
+                    backgroundColor:
+                    MaterialStatePropertyAll(MyColors.mainColor200),
+                    shape:
+                    MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: MyParameters.borderRadius20,
+                      ),
+                    )),
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
                     container
@@ -194,10 +201,9 @@ class _AddButtonFoodState extends ConsumerState<AddButtonFood> {
                   }
                 },
                 child: Text(
-                  'Add',
-                  style: TextStyle(
-                      // fontSize: Dimensions.height10 * 3
-                      ),
+                  'Add',style: TextStyle(
+                    fontSize: MyParameters.bigFontSize,
+                    fontWeight: MyParameters.boldFont)
                 ),
               ),
             ],

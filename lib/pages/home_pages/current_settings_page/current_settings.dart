@@ -2,8 +2,6 @@ import 'package:flutter_calorie_app/DB/user_data/user_data.dart';
 import 'package:flutter_calorie_app/pages/home_pages/current_settings_page/add_button_settings.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
 
-import '../../../DB/db_helper/db_helper.dart';
-import '../../../DB/models/user_data_model.dart';
 import '../../../utils/dimensions_util.dart';
 import '../../../utils/my_colors.dart';
 import '../../../utils/my_parameters.dart';
@@ -19,7 +17,10 @@ class CurrentSettingsPage extends StatefulWidget {
 }
 
 class _CurrentSettingsPageState extends State<CurrentSettingsPage> {
-  final _formKey = GlobalKey<FormState>();
+  final textStyle = TextStyle(
+      color: MyColors.whiteColor,
+      fontSize: MyParameters.bigFontSize,
+      fontWeight: MyParameters.boldFont);
   final List<String> listOfHints = [
     'Enter new height',
     'Enter new weight',
@@ -35,6 +36,7 @@ class _CurrentSettingsPageState extends State<CurrentSettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: MyColors.mainColor200,
         leading: IconButton(
             onPressed: () {
               Navigator.of(context).pushNamed(MainAppPage().route);
@@ -47,18 +49,20 @@ class _CurrentSettingsPageState extends State<CurrentSettingsPage> {
       ),
       body: Center(
         child: Container(
-          height: Dimensions.height10 * 14,
-          width: Dimensions.width10 * 25,
+          height: Dimensions.height10 * 12,
+          width: Dimensions.width10 * 22,
           decoration: BoxDecoration(
               borderRadius: MyParameters.borderRadius20,
-              color: MyColors.mainColor),
+              color: MyColors.mainColor200),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
 
-              Text('Height: $currentUserHeight cm'),
-              Text('Weight: $currentUserWeight kg'),
-              Text('Age: $currentUserAge'),
+              Text('Height: $currentUserHeight cm', style: textStyle,),
+              SizedBox(height: Dimensions.height10/2,),
+              Text('Weight: $currentUserWeight kg', style: textStyle,),
+              SizedBox(height: Dimensions.height10/2,),
+              Text('Age: $currentUserAge', style: textStyle,),
             ],
           ),
         ),
@@ -69,6 +73,7 @@ class _CurrentSettingsPageState extends State<CurrentSettingsPage> {
 
   FloatingActionButton buildFloatingActionButton(BuildContext context) {
     return FloatingActionButton(
+      backgroundColor: MyColors.mainColor200,
       onPressed: () {
     Navigator.of(context).pushNamed(AddButton().route);
   },

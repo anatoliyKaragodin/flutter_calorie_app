@@ -4,6 +4,7 @@ import 'package:flutter_calorie_app/utils/dimensions_util.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
 import 'package:flutter_calorie_app/utils/my_parameters.dart';
 
+import '../../../utils/my_colors.dart';
 import '../current_settings_page/current_settings.dart';
 import '../food_page/food_page.dart';
 import '../profile_page/profile_page.dart';
@@ -30,7 +31,7 @@ class _MainAppPageState extends ConsumerState<MainAppPage> {
     return Scaffold(
       body: Center(
         child: SizedBox(
-          width: Dimensions.width10 * 18,
+          width: Dimensions.width10 * 20,
           height: Dimensions.height10 * 28,
           child: ListView.builder(
               itemCount: 4,
@@ -39,10 +40,15 @@ class _MainAppPageState extends ConsumerState<MainAppPage> {
                   padding: EdgeInsets.all(Dimensions.height10/2),
                   child: ElevatedButton(
                     style: ButtonStyle(
-                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                      borderRadius: MyParameters.borderRadius20,
-                    ))),
+
+                        backgroundColor:
+                        MaterialStatePropertyAll(MyColors.mainColor200),
+                        shape:
+                        MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: MyParameters.borderRadius20,
+                          ),
+                        )),
                     onPressed: () async {
                       var products = await ProductsData().sortByDay(selectedDay);
                       ref.read(selectedDayProductsProvider.notifier).update((state) => products);
@@ -53,7 +59,9 @@ class _MainAppPageState extends ConsumerState<MainAppPage> {
                       children: [
                         Icon(Icons.accessibility_new_rounded),
                         SizedBox(width: Dimensions.width10,),
-                        Text(pages[index].label)
+                        Text(pages[index].label, style: TextStyle(
+                            fontSize: MyParameters.bigFontSize,
+                            fontWeight: MyParameters.boldFont))
                       ],
                     ),
                   ),

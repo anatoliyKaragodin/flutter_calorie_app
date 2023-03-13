@@ -1,4 +1,3 @@
-import 'package:flutter_calorie_app/DB/user_data/user_data.dart';
 import 'package:flutter_calorie_app/riverpod/riverpod.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
 
@@ -14,10 +13,13 @@ class ListOfProductsWidget extends ConsumerStatefulWidget {
 }
 
 class _ListOfProductsWidgetState extends ConsumerState<ListOfProductsWidget> {
+  final normalTextStyle = TextStyle(
+      color: MyColors.blackColor45,
+      fontSize: MyParameters.normalFontSize,
+      fontWeight: MyParameters.boldFont);
   @override
   Widget build(BuildContext context) {
     final products = ref.watch(selectedDayProductsProvider);
-    final isLoaded = ref.watch(isLoadedProvider);
     return Expanded(
       child: ListView.builder(
           itemCount: products.length,
@@ -29,7 +31,7 @@ class _ListOfProductsWidgetState extends ConsumerState<ListOfProductsWidget> {
               child: InkWell(
                 child: Container(
                   decoration: BoxDecoration(
-                      color: MyColors.mainColor!.withOpacity(0.2),
+                      color: MyColors.mainColor200!.withOpacity(0.2),
                       borderRadius: MyParameters.borderRadius20),
                   width: Dimensions.width10 * 10,
                   child: Column(
@@ -39,7 +41,7 @@ class _ListOfProductsWidgetState extends ConsumerState<ListOfProductsWidget> {
                         padding: EdgeInsets.only(
                             top: Dimensions.height10 / 2,
                             bottom: Dimensions.height10 / 2),
-                        child: Text(products[index].label),
+                        child: Text(products[index].label, style: normalTextStyle,),
                       ),
 
                       /// Calories
@@ -48,7 +50,7 @@ class _ListOfProductsWidgetState extends ConsumerState<ListOfProductsWidget> {
                             top: Dimensions.height10 / 2,
                             bottom: Dimensions.height10 / 2),
                         child: Text(
-                            'Calories: ${products[index].calories.toString()} kcal'),
+                            'Calories: ${products[index].calories.toString()} kcal', style: normalTextStyle,),
                       ),
 
                       /// Proteins
@@ -57,7 +59,7 @@ class _ListOfProductsWidgetState extends ConsumerState<ListOfProductsWidget> {
                             top: Dimensions.height10 / 2,
                             bottom: Dimensions.height10 / 2),
                         child: Text(
-                            'Proteins: ${products[index].proteins.toString()} g'),
+                            'Proteins: ${products[index].proteins.toString()} g', style: normalTextStyle,),
                       ),
 
                       /// Fats
@@ -66,7 +68,7 @@ class _ListOfProductsWidgetState extends ConsumerState<ListOfProductsWidget> {
                             top: Dimensions.height10 / 2,
                             bottom: Dimensions.height10 / 2),
                         child: Text(
-                            'Fats: ${products[index].fats.toString()} g'),
+                            'Fats: ${products[index].fats.toString()} g', style: normalTextStyle,),
                       ),
 
                       /// Carbohydrates
@@ -75,7 +77,7 @@ class _ListOfProductsWidgetState extends ConsumerState<ListOfProductsWidget> {
                             top: Dimensions.height10 / 2,
                             bottom: Dimensions.height10 / 2),
                         child: Text(
-                            'Carbohydrates: ${products[index].carbohydrates.toString()} g'),
+                            'Carbohydrates: ${products[index].carbohydrates.toString()} g', style: normalTextStyle,),
                       ),
                     ],
                   ),

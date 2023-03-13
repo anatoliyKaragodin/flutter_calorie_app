@@ -4,6 +4,7 @@ import 'package:flutter_calorie_app/utils/library.dart';
 
 import '../../../utils/dimensions_util.dart';
 
+import '../../../utils/my_colors.dart';
 import '../../../utils/my_parameters.dart';
 import '../main_app_page/main_app_page.dart';
 
@@ -21,6 +22,7 @@ class _StatisticsPageState extends State<StatisticsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: MyColors.mainColor200,
         leading: IconButton(
             onPressed: () {
               Navigator.of(context).pushNamed(MainAppPage().route);

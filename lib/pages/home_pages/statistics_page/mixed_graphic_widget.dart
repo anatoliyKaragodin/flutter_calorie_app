@@ -2,8 +2,8 @@ import 'package:flutter_calorie_app/utils/dimensions_util.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
 
 import '../../../DB/user_data/user_data.dart';
-
-
+import '../../../utils/my_colors.dart';
+import '../../../utils/my_parameters.dart';
 
 class MixedGraphicWidget extends StatefulWidget {
   const MixedGraphicWidget({Key? key}) : super(key: key);
@@ -14,19 +14,26 @@ class MixedGraphicWidget extends StatefulWidget {
 
 class _MixedGraphicWidgetState extends State<MixedGraphicWidget> {
   final listOfItemColors = [
-    Colors.red,
+    Colors.blueAccent,
     Colors.green,
-    Colors.blue,
+    Colors.orangeAccent,
     Colors.purpleAccent,
-    Colors.amber
+    Colors.redAccent
   ];
-  final listOfLabels = ['calories', 'proteins', 'fats','carbohydrates'];
+  final listOfLabels = ['calories', 'proteins', 'fats', 'carbohydrates'];
   @override
   Widget build(BuildContext context) {
     /// Mixed graphic
     return Column(
       children: [
-        Text('Calories, proteins, fats and carbohydrates monthly'),
+        Text('Calories, proteins, fats and carbohydrates monthly',
+            style: TextStyle(
+                color: MyColors.blackColor45,
+                fontSize: MyParameters.normalFontSize,
+                fontWeight: MyParameters.boldFont)),
+        SizedBox(
+          height: Dimensions.height10,
+        ),
         Container(
           margin: const EdgeInsets.only(top: 10),
           width: Dimensions.width10 * 35,
@@ -52,12 +59,14 @@ class _MixedGraphicWidgetState extends State<MixedGraphicWidget> {
               elements: [
                 IntervalElement(
                     size: SizeAttr(value: 1),
-                    color: ColorAttr(variable: 'type', values: listOfItemColors),
+                    color:
+                        ColorAttr(variable: 'type', values: listOfItemColors),
                     modifiers: [DodgeModifier()],
                     position:
                         Varset('index') * Varset('value') / Varset('type'))
               ],
             ),
+
             /// Hide container
             Padding(
               padding: EdgeInsets.only(top: Dimensions.height10 * 28.8),
@@ -68,50 +77,82 @@ class _MixedGraphicWidgetState extends State<MixedGraphicWidget> {
             ),
           ]),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-          Column(
+        SizedBox(
+          width: Dimensions.width10*30,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-            Container(
-              height: Dimensions.height10,
-              width: Dimensions.width10,
-              decoration: BoxDecoration(color: listOfItemColors[0]),
-            ),
-            SizedBox(height: Dimensions.height10,),
-            Text(listOfLabels[0])
-          ],),
-          Column(
-            children: [
-              Container(
-                height: Dimensions.height10,
-                width: Dimensions.width10,
-                decoration: BoxDecoration(color: listOfItemColors[1]),
+              Column(
+                children: [
+                  Container(
+                    height: Dimensions.height10,
+                    width: Dimensions.width10,
+                    decoration: BoxDecoration(color: listOfItemColors[0]),
+                  ),
+                  SizedBox(
+                    height: Dimensions.height10,
+                  ),
+                  Text(listOfLabels[0],
+                      style: TextStyle(
+                          color: MyColors.blackColor45,
+                          fontSize: MyParameters.normalFontSize,
+                          fontWeight: MyParameters.boldFont))
+                ],
               ),
-              SizedBox(height: Dimensions.height10,),
-              Text(listOfLabels[1])
-            ],),
-          Column(
-            children: [
-              Container(
-                height: Dimensions.height10,
-                width: Dimensions.width10,
-                decoration: BoxDecoration(color: listOfItemColors[2]),
+              Column(
+                children: [
+                  Container(
+                    height: Dimensions.height10,
+                    width: Dimensions.width10,
+                    decoration: BoxDecoration(color: listOfItemColors[1]),
+                  ),
+                  SizedBox(
+                    height: Dimensions.height10,
+                  ),
+                  Text(listOfLabels[1],
+                      style: TextStyle(
+                          color: MyColors.blackColor45,
+                          fontSize: MyParameters.normalFontSize,
+                          fontWeight: MyParameters.boldFont))
+                ],
               ),
-              SizedBox(height: Dimensions.height10,),
-              Text(listOfLabels[2])
-            ],),
-          Column(
-            children: [
-              Container(
-                height: Dimensions.height10,
-                width: Dimensions.width10,
-                decoration: BoxDecoration(color: listOfItemColors[3]),
+              Column(
+                children: [
+                  Container(
+                    height: Dimensions.height10,
+                    width: Dimensions.width10,
+                    decoration: BoxDecoration(color: listOfItemColors[2]),
+                  ),
+                  SizedBox(
+                    height: Dimensions.height10,
+                  ),
+                  Text(listOfLabels[2],
+                      style: TextStyle(
+                          color: MyColors.blackColor45,
+                          fontSize: MyParameters.normalFontSize,
+                          fontWeight: MyParameters.boldFont))
+                ],
               ),
-              SizedBox(height: Dimensions.height10,),
-              Text(listOfLabels[3])
-            ],)
-        ],)
+              Column(
+                children: [
+                  Container(
+                    height: Dimensions.height10,
+                    width: Dimensions.width10,
+                    decoration: BoxDecoration(color: listOfItemColors[3]),
+                  ),
+                  SizedBox(
+                    height: Dimensions.height10,
+                  ),
+                  Text(listOfLabels[3],
+                      style: TextStyle(
+                          color: MyColors.blackColor45,
+                          fontSize: MyParameters.normalFontSize,
+                          fontWeight: MyParameters.boldFont))
+                ],
+              )
+            ],
+          ),
+        )
       ],
     );
   }

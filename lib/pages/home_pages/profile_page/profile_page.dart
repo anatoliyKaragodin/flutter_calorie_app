@@ -2,7 +2,6 @@ import 'package:flutter_calorie_app/utils/library.dart';
 import 'package:flutter_calorie_app/utils/my_colors.dart';
 
 import '../../../DB/user_data/user_data.dart';
-import '../../../riverpod/riverpod.dart';
 import '../../../utils/dimensions_util.dart';
 import '../../../utils/my_parameters.dart';
 import '../main_app_page/main_app_page.dart';
@@ -17,12 +16,17 @@ class ProfilePage extends ConsumerStatefulWidget {
 }
 
 class _ProfilePageState extends ConsumerState<ProfilePage> {
+  final textStyle = TextStyle(
+      color: MyColors.whiteColor,
+      fontSize: MyParameters.bigFontSize,
+      fontWeight: MyParameters.boldFont);
   @override
   Widget build(BuildContext context) {
     /// Riverpod watchers
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: MyColors.mainColor200,
         leading: IconButton(
             onPressed: () {
               Navigator.of(context).pushNamed(MainAppPage().route);
@@ -35,34 +39,43 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
       ),
       body: Center(
         child: Container(
-          height: Dimensions.height10 * 14,
-          width: Dimensions.width10 * 25,
+          height: Dimensions.height10 * 18,
+          width: Dimensions.width10 * 30,
           decoration: BoxDecoration(
               borderRadius: MyParameters.borderRadius20,
-              color: MyColors.mainColor),
+              color: MyColors.mainColor200),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Text(startUserGenger ? 'Male' : 'Female'),
+              Text(startUserGenger ? 'Male' : 'Female', style: TextStyle(
+                  color: MyColors.whiteColor,
+                  fontSize: MyParameters.bigFontSize,
+                  fontWeight: MyParameters.boldFont)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text('Starting:'),
-                      Text('Height: $startUserHeight cm'),
-                      Text('Weight: $startUserWeight kg'),
-                      Text('Age: $startUserAge'),
+                      Text('Starting:', style: textStyle),
+                      SizedBox(height: Dimensions.height10/2,),
+                      Text('Height: $startUserHeight cm', style: textStyle),
+                      SizedBox(height: Dimensions.height10/2,),
+                      Text('Weight: $startUserWeight kg', style: textStyle),
+                      SizedBox(height: Dimensions.height10/2,),
+                      Text('Age: $startUserAge', style: textStyle),
                     ],
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text('Current:'),
-                      Text('Height: $currentUserHeight cm'),
-                      Text('Weight: $currentUserWeight kg'),
-                      Text('Age: $currentUserAge'),
+                      Text('Current:', style: textStyle),
+                      SizedBox(height: Dimensions.height10/2,),
+                      Text('Height: $currentUserHeight cm', style: textStyle),
+                      SizedBox(height: Dimensions.height10/2,),
+                      Text('Weight: $currentUserWeight kg', style: textStyle),
+                      SizedBox(height: Dimensions.height10/2,),
+                      Text('Age: $currentUserAge', style: textStyle),
                     ],
                   ),
                 ],

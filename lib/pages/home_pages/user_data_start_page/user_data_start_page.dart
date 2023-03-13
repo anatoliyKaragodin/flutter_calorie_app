@@ -1,15 +1,12 @@
 import 'package:flutter_calorie_app/DB/user_data/user_data.dart';
 import 'package:flutter_calorie_app/pages/home_pages/main_app_page/main_app_page.dart';
-import 'package:flutter_calorie_app/riverpod/riverpod.dart';
 import 'package:flutter_calorie_app/utils/dimensions_util.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
+import 'package:flutter_calorie_app/utils/my_colors.dart';
 import 'package:flutter_calorie_app/utils/my_parameters.dart';
 
 import '../../../DB/db_helper/db_helper.dart';
 import '../../../DB/models/user_data_model.dart';
-import 'form_field_widget.dart';
-
-// enum Gender { male, female }
 
 class UserDataStartPage extends ConsumerStatefulWidget {
   final String route = 'user data start page';
@@ -36,7 +33,6 @@ class _UserDataStartPageState extends ConsumerState<UserDataStartPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -69,6 +65,7 @@ class _UserDataStartPageState extends ConsumerState<UserDataStartPage> {
                                 return null;
                               },
                             ),
+
                             /// Weight
                             TextFormField(
                               keyboardType: TextInputType.number,
@@ -83,6 +80,7 @@ class _UserDataStartPageState extends ConsumerState<UserDataStartPage> {
                                 return null;
                               },
                             ),
+
                             /// Age
                             TextFormField(
                               keyboardType: TextInputType.number,
@@ -111,10 +109,14 @@ class _UserDataStartPageState extends ConsumerState<UserDataStartPage> {
                         children: [
                           SizedBox(
                             height: Dimensions.height10 * 3,
-                            width: Dimensions.width10 * 15,
+                            width: Dimensions.width10 * 16,
                             child: ListTile(
-                              title: const Text('Male'),
+                              title:  Text('Male', style: TextStyle(
+                                  color: _isMale? MyColors.mainColor200 :MyColors.blackColor45,
+                                  fontSize: MyParameters.bigFontSize,
+                                  fontWeight: MyParameters.boldFont)),
                               leading: Radio<bool>(
+                                activeColor: MyColors.mainColor200,
                                 value: true,
                                 groupValue: _isMale,
                                 onChanged: (value) {
@@ -127,10 +129,14 @@ class _UserDataStartPageState extends ConsumerState<UserDataStartPage> {
                           ),
                           SizedBox(
                             height: Dimensions.height10 * 3,
-                            width: Dimensions.width10 * 15,
+                            width: Dimensions.width10 * 16,
                             child: ListTile(
-                              title: const Text('Female'),
+                              title: Text('Female', style: TextStyle(
+                                color: !_isMale ? MyColors.mainColor200 :MyColors.blackColor45,
+                                  fontSize: MyParameters.bigFontSize,
+                                  fontWeight: MyParameters.boldFont) ),
                               leading: Radio<bool>(
+                                activeColor: MyColors.mainColor200,
                                 value: false,
                                 groupValue: _isMale,
                                 onChanged: (bool? value) {
@@ -151,12 +157,15 @@ class _UserDataStartPageState extends ConsumerState<UserDataStartPage> {
                     /// Submit button
                     ElevatedButton(
                       style: ButtonStyle(
+
+                          backgroundColor:
+                              MaterialStatePropertyAll(MyColors.mainColor200),
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: MyParameters.borderRadius20,
-                        ),
-                      )),
+                            RoundedRectangleBorder(
+                              borderRadius: MyParameters.borderRadius20,
+                            ),
+                          )),
                       onPressed: () async {
                         // Validate returns true if the form is valid, or false otherwise.
                         if (_formKey.currentState!.validate()) {
@@ -168,34 +177,45 @@ class _UserDataStartPageState extends ConsumerState<UserDataStartPage> {
 
                           /// Change user data
                           startUserGenger = _isMale;
-                          startUserHeight = int.parse(listOfTextControllers[0].text);
-                          startUserWeight = double.parse(listOfTextControllers[1].text);
-                          startUserAge = int.parse(listOfTextControllers[2].text);
+                          startUserHeight =
+                              int.parse(listOfTextControllers[0].text);
+                          startUserWeight =
+                              double.parse(listOfTextControllers[1].text);
+                          startUserAge =
+                              int.parse(listOfTextControllers[2].text);
+
                           /// Current data
-                          currentUserHeight = int.parse(listOfTextControllers[0].text);
-                          currentUserWeight = double.parse(listOfTextControllers[1].text);
-                          currentUserAge = int.parse(listOfTextControllers[2].text);
+                          currentUserHeight =
+                              int.parse(listOfTextControllers[0].text);
+                          currentUserWeight =
+                              double.parse(listOfTextControllers[1].text);
+                          currentUserAge =
+                              int.parse(listOfTextControllers[2].text);
+
                           /// Add user data to DB
                           UserDataModel userData = UserDataModel(
                               createdTime: DateTime.now(),
                               age: int.parse(listOfTextControllers[2].text),
                               height: int.parse(listOfTextControllers[0].text),
-                              weight: double.parse(listOfTextControllers[1].text),
+                              weight:
+                                  double.parse(listOfTextControllers[1].text),
                               isMale: _isMale);
-                         var id = await DBHelper.instance.createUserData(tableUserDataStart ,userData);
-                         await DBHelper.instance.createUserData(tableUserData, userData);
-
-                         print('Create user data with ID: $id');
+                          var id = await DBHelper.instance
+                              .createUserData(tableUserDataStart, userData);
+                          await DBHelper.instance
+                              .createUserData(tableUserData, userData);
+                          /// Read all user weights
+                          UserData().sortUserWeightsPerMonth(Jiffy().month);
+                          print('Create user data with ID: $id');
 
                           /// Go to MainAppPage()
                           Navigator.of(context).pushNamed(MainAppPage().route);
                         }
                       },
-                      child: const Text('Submit'),
+                      child: Text('Submit', style: TextStyle(
+                          fontSize: MyParameters.bigFontSize,
+                          fontWeight: MyParameters.boldFont) ),
                     ),
-                    TextButton(onPressed: () async {
-                      // await DBHelper().deleteTable(tableUserDataStart);
-                    }, child: Text('Clear table'))
                   ],
                 )),
           ),

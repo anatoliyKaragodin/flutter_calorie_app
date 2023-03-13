@@ -19,11 +19,20 @@ class FoodPage extends ConsumerStatefulWidget {
 }
 
 class _FoodPageState extends ConsumerState<FoodPage> {
+  final normalTextStyle = TextStyle(
+  color: MyColors.whiteColor,
+  fontSize: MyParameters.normalFontSize,
+  fontWeight: MyParameters.boldFont);
+  final bigTextStyle = TextStyle(
+      color: MyColors.blackColor45,
+      fontSize: MyParameters.bigFontSize,
+      fontWeight: MyParameters.boldFont);
   @override
   Widget build(BuildContext context) {
     final selectedDay = ref.watch(selectedDayProvider);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: MyColors.mainColor200,
         leading: IconButton(
             onPressed: () {
               Navigator.of(context).pushNamed(MainAppPage().route);
@@ -39,17 +48,18 @@ class _FoodPageState extends ConsumerState<FoodPage> {
           ListOfDaysWidget(),
           Container(
             decoration: BoxDecoration(
-                color: MyColors.mainColor,
-                // borderRadius: MyParameters.borderRadius20
+                color: MyColors.mainColor200,
+                borderRadius: MyParameters.borderRadius20
             ),
             height: Dimensions.height10 * 3,
             width: Dimensions.screenWidth,
-            child: Center(child: Text('Products list ${Jiffy().year}/${Jiffy().month}/$selectedDay')),
+            child: Center(child: Text('Products list ${Jiffy().year}/${Jiffy().month}/$selectedDay', style: normalTextStyle,)),
           ),
           ListOfProductsWidget()
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: MyColors.mainColor200,
         child: Icon(Icons.add),
         onPressed: () {
           Navigator.of(context).pushNamed(AddButtonFood().route);
