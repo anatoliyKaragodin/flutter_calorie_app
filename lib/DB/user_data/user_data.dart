@@ -120,26 +120,35 @@ class ProductsData {
 
     /// Calc calories for day
     for (int day = 1; day < daysInMonth; day++) {
+      double calories = 0;
+      double proteins = 0;
+      double fats = 0;
+      double carbohydrates = 0;
       /// Calories by day
       for (int i = 0; i < products[day].length; i++) {
-        double calories = 0;
-        double proteins = 0;
-        double fats = 0;
-        double carbohydrates = 0;
+
         calories += products[day][i].calories;
         proteins += products[day][i].proteins;
         fats += products[day][i].fats;
         carbohydrates += products[day][i].carbohydrates;
 
-        /// Add calories per day to map
-        listCaloriesPerDay[day].addAll({
-          'date': day,
-          'calories': calories,
-          'proteins': proteins,
-          'fats': fats,
-          'carbohydrates': carbohydrates
-        });
+        // /// Add calories per day to map
+        // listCaloriesPerDay[day].addAll({
+        //   'date': day,
+        //   'calories': calories,
+        //   'proteins': proteins,
+        //   'fats': fats,
+        //   'carbohydrates': carbohydrates
+        // });
       }
+      /// Add calories per day to map
+      listCaloriesPerDay[day].addAll({
+        'date': day,
+        'calories': calories,
+        'proteins': proteins,
+        'fats': fats,
+        'carbohydrates': carbohydrates
+      });
     }
 
     for (int day = 1; day < daysInMonth; day++) {
