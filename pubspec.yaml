@@ -48,6 +48,10 @@ dependencies:
   flutter_downloader: ^1.10.2
   permission_handler: ^10.2.0
   flutter_file_downloader: ^1.1.0+1
+  graphic: ^1.0.1
+  sqflite: ^2.2.5
+
+
 
 
   # The following adds the Cupertino Icons font to your application.
