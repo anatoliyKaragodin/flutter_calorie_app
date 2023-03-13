@@ -15,7 +15,8 @@ class ListOfDaysWidget extends ConsumerStatefulWidget {
 class _ListOfDaysWidgetState extends ConsumerState<ListOfDaysWidget> {
   @override
   Widget build(BuildContext context) {
-    final products = ref.watch(selectedDayProductsProvider);
+    var listOfDayData = ProductsData().calcByDay();
+
     final selectedDay = ref.watch(selectedDayProvider);
     return SizedBox(
       height: Dimensions.height10 * 16,
@@ -23,10 +24,6 @@ class _ListOfDaysWidgetState extends ConsumerState<ListOfDaysWidget> {
           scrollDirection: Axis.horizontal,
           itemCount: Jiffy().daysInMonth,
           itemBuilder: (BuildContext context, int index) {
-            double calories = 0;
-            for(var item in products) {
-              calories += item.calories;
-            }
             return Padding(
               padding: EdgeInsets.all(Dimensions.width10),
 
@@ -34,9 +31,14 @@ class _ListOfDaysWidgetState extends ConsumerState<ListOfDaysWidget> {
               child: InkWell(
                 onTap: () {
                   /// Change selected day
-                  ref.read(selectedDayProvider.notifier).update((state) => index +1);
+                  ref
+                      .read(selectedDayProvider.notifier)
+                      .update((state) => index + 1);
+
                   /// Change selected day products
-                  ref.read(selectedDayProductsProvider.notifier).update((state) => ProductsData().sortByDay(index+1));
+                  ref
+                      .read(selectedDayProductsProvider.notifier)
+                      .update((state) => ProductsData().sortByDay(index + 1));
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -61,7 +63,8 @@ class _ListOfDaysWidgetState extends ConsumerState<ListOfDaysWidget> {
                         padding: EdgeInsets.only(
                             top: Dimensions.height10 / 2,
                             bottom: Dimensions.height10 / 2),
-                        child: Text('Calories: $calories kcal'),
+                        child: Text(
+                            'Calories: ${listOfDayData[index]['calories']} kcal'),
                       ),
 
                       /// Proteins
@@ -69,7 +72,8 @@ class _ListOfDaysWidgetState extends ConsumerState<ListOfDaysWidget> {
                         padding: EdgeInsets.only(
                             top: Dimensions.height10 / 2,
                             bottom: Dimensions.height10 / 2),
-                        child: Text('Proteins:'),
+                        child: Text(
+                            'Proteins: ${listOfDayData[index]['proteins']}'),
                       ),
 
                       /// Fats
@@ -77,7 +81,7 @@ class _ListOfDaysWidgetState extends ConsumerState<ListOfDaysWidget> {
                         padding: EdgeInsets.only(
                             top: Dimensions.height10 / 2,
                             bottom: Dimensions.height10 / 2),
-                        child: Text('Fats:'),
+                        child: Text('Fats: ${listOfDayData[index]['fats']}'),
                       ),
 
                       /// Carbohydrates
@@ -85,7 +89,8 @@ class _ListOfDaysWidgetState extends ConsumerState<ListOfDaysWidget> {
                         padding: EdgeInsets.only(
                             top: Dimensions.height10 / 2,
                             bottom: Dimensions.height10 / 2),
-                        child: Text('Carbohydrates:'),
+                        child: Text(
+                            'Carbohydrates: ${listOfDayData[index]['carbohydrates']}'),
                       ),
                     ],
                   ),

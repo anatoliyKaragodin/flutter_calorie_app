@@ -7,7 +7,6 @@ import 'package:flutter_calorie_app/pages/home_pages/food_page/food_page.dart';
 import 'package:flutter_calorie_app/pages/home_pages/main_app_page/main_app_page.dart';
 import 'package:flutter_calorie_app/pages/home_pages/profile_page/profile_page.dart';
 import 'package:flutter_calorie_app/pages/home_pages/statistics_page/statistics_page.dart';
-import 'package:flutter_calorie_app/riverpod/riverpod.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
 import 'package:flutter_calorie_app/pages/home_pages/user_data_start_page/user_data_start_page.dart';
 
@@ -25,13 +24,14 @@ void main() async{
   var currentData = await DBHelper.instance.readAllUserData();
   /// Read all products
   ProductsData.listProducts = await DBHelper.instance.readAllProductData();
+  ProductsData().calcByDay();
 
   if(startData?.id != null) {
     appHomePageIndex = 1;
     startUserGenger = startData!.isMale;
-    startUserHeight = startData!.height;
-    startUserWeight = startData!.weight;
-    startUserAge = startData!.age;
+    startUserHeight = startData.height;
+    startUserWeight = startData.weight;
+    startUserAge = startData.age;
   }
   if(currentData.isNotEmpty) {
     currentUserHeight = currentData.last.height;

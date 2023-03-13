@@ -89,16 +89,63 @@ class ProductsData {
   static List<ProductModel> listProducts = [];
   static List<ProductModel> listDayProducts = [];
 
+  /// List of products per day
   List<ProductModel> sortByDay(int date) {
     List<ProductModel>? products = [];
     for (var product in listProducts) {
-      if(Jiffy(product.createdDate).date == date) {
+      if (Jiffy(product.createdDate).date == date) {
         products.add(product);
       }
     }
     return products;
   }
 
+  /// List of month cal, proteins, fats, carbohydrates per day
+  List<Map<String, dynamic>> calcByDay() {
+    List<List<ProductModel>> products = [];
+    List<Map<String, dynamic>> listCaloriesPerDay = [];
+    int daysInMonth = Jiffy().daysInMonth;
+
+    /// List of products in month by day
+    for (int day = 1; day <= daysInMonth; day++) {
+      products.add(sortByDay(day));
+      listCaloriesPerDay.add({
+        'date': day,
+        'calories': 0,
+        'proteins': 0,
+        'fats': 0,
+        'carbohydrates': 0
+      });
+    }
+
+    /// Calc calories for day
+    for (int day = 1; day < daysInMonth; day++) {
+      /// Calories by day
+      for (int i = 0; i < products[day].length; i++) {
+        double calories = 0;
+        double proteins = 0;
+        double fats = 0;
+        double carbohydrates = 0;
+        calories += products[day][i].calories;
+        proteins += products[day][i].proteins;
+        fats += products[day][i].fats;
+        carbohydrates += products[day][i].carbohydrates;
 
 
+         /// Add calories per day to map
+         listCaloriesPerDay[day].addAll({
+           'date': day,
+           'calories': calories,
+           'proteins': proteins,
+           'fats': fats,
+           'carbohydrates': carbohydrates
+         });
+
+      }
+        }
+
+    print('CALORIES MAP: $listCaloriesPerDay');
+
+    return listCaloriesPerDay;
+  }
 }
