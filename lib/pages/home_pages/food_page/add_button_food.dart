@@ -3,7 +3,6 @@ import 'package:flutter_calorie_app/DB/models/product_model.dart';
 import 'package:flutter_calorie_app/DB/user_data/user_data.dart';
 import 'package:flutter_calorie_app/main.dart';
 import 'package:flutter_calorie_app/pages/home_pages/food_page/food_page.dart';
-import 'package:flutter_calorie_app/pages/home_pages/user_data_start_page/form_field_widget.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
 
 import '../../../riverpod/riverpod.dart';
@@ -20,6 +19,7 @@ class AddButtonFood extends ConsumerStatefulWidget {
 }
 
 class _AddButtonFoodState extends ConsumerState<AddButtonFood> {
+
   final _formKey = GlobalKey<FormState>();
   final List<TextEditingController> listOfTextControllers = [
     TextEditingController(),
@@ -37,6 +37,7 @@ class _AddButtonFoodState extends ConsumerState<AddButtonFood> {
   ];
   @override
   Widget build(BuildContext context) {
+    final selectedDay = ref.watch(selectedDayProvider);
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -175,7 +176,7 @@ class _AddButtonFoodState extends ConsumerState<AddButtonFood> {
                         fats: double.parse(listOfTextControllers[3].text),
                         carbohydrates:
                             double.parse(listOfTextControllers[4].text),
-                        createdDate: DateTime.now());
+                        createdDate: Jiffy('${Jiffy().year}/${Jiffy().month}/$selectedDay').dateTime);
 
                     /// Save product data
                     await DBHelper.instance.createProductData(productData);
