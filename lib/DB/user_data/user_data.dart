@@ -1,3 +1,6 @@
+import 'package:flutter_calorie_app/DB/db_helper/db_helper.dart';
+import 'package:flutter_calorie_app/main.dart';
+import 'package:flutter_calorie_app/riverpod/riverpod.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
 
 import '../models/product_model.dart';
@@ -13,41 +16,7 @@ int currentUserAge = 0;
 
 class UserData {
   static List<Map<String, dynamic>> mixedData = [
-    // {"type": "Email", "index": 0, "value": 120},
-    // {"type": "Email", "index": 1, "value": 132},
-    // {"type": "Email", "index": 2, "value": 101},
-    // {"type": "Email", "index": 3, "value": 134},
-    // {"type": "Email", "index": 4, "value": 90},
-    // {"type": "Email", "index": 5, "value": 230},
-    // {"type": "Email", "index": 6, "value": 210},
-    // {"type": "Affiliate", "index": 0, "value": 220},
-    // {"type": "Affiliate", "index": 1, "value": 182},
-    // {"type": "Affiliate", "index": 2, "value": 191},
-    // {"type": "Affiliate", "index": 3, "value": 234},
-    // {"type": "Affiliate", "index": 4, "value": 290},
-    // {"type": "Affiliate", "index": 5, "value": 330},
-    // {"type": "Affiliate", "index": 6, "value": 310},
-    // {"type": "Video", "index": 0, "value": 150},
-    // {"type": "Video", "index": 1, "value": 232},
-    // {"type": "Video", "index": 2, "value": 201},
-    // {"type": "Video", "index": 3, "value": 154},
-    // {"type": "Video", "index": 4, "value": 190},
-    // {"type": "Video", "index": 5, "value": 330},
-    // {"type": "Video", "index": 6, "value": 410},
-    // {"type": "Direct", "index": 0, "value": 320},
-    // {"type": "Direct", "index": 1, "value": 332},
-    // {"type": "Direct", "index": 2, "value": 301},
-    // {"type": "Direct", "index": 3, "value": 334},
-    // {"type": "Direct", "index": 4, "value": 390},
-    // {"type": "Direct", "index": 5, "value": 330},
-    // {"type": "Direct", "index": 6, "value": 320},
-    // {"type": "Search", "index": 0, "value": 320},
-    // {"type": "Search", "index": 1, "value": 432},
-    // {"type": "Search", "index": 2, "value": 401},
-    // {"type": "Search", "index": 3, "value": 434},
-    // {"type": "Search", "index": 4, "value": 390},
-    // {"type": "Search", "index": 5, "value": 430},
-    // {"type": "Search", "index": 6, "value": 420},
+
   ];
 
   static List<Map<String, Object>> weightData = [
@@ -83,6 +52,22 @@ class UserData {
     {'date': '30', 'value': 350},
     {'date': '31', 'value': 150},
   ];
+
+  Future<List<Map<String, Object>>> sortUserWeightsPerMonth (int month) async {
+
+    final List<Map<String, Object>> listUserWeights = [];
+    int daysInMonth = Jiffy().daysInMonth;
+    var currentUserdata = await DBHelper.instance.readAllUserData();
+    for(var item in currentUserdata) {
+      if (Jiffy(item.createdTime).month == month) {
+        listUserWeights.add({'date': item.createdTime, 'value': item.weight});
+      }
+    }
+    weightData = listUserWeights;
+    print('USER WEIGHTS LIST: $listUserWeights');
+  return listUserWeights;
+  }
+
 }
 
 class ProductsData {
@@ -91,17 +76,20 @@ class ProductsData {
 
   /// List of products per day
   List<ProductModel> sortByDay(int date) {
+
     List<ProductModel>? products = [];
     for (var product in listProducts) {
       if (Jiffy(product.createdDate).date == date) {
         products.add(product);
       }
     }
+
     return products;
   }
 
   /// List of month cal, proteins, fats, carbohydrates per day
   List<Map<String, dynamic>> calcByDay() {
+
     List<List<ProductModel>> products = [];
     List<Map<String, dynamic>> listCaloriesPerDay = [];
     int daysInMonth = Jiffy().daysInMonth;
@@ -131,15 +119,6 @@ class ProductsData {
         proteins += products[day][i].proteins;
         fats += products[day][i].fats;
         carbohydrates += products[day][i].carbohydrates;
-
-        // /// Add calories per day to map
-        // listCaloriesPerDay[day].addAll({
-        //   'date': day,
-        //   'calories': calories,
-        //   'proteins': proteins,
-        //   'fats': fats,
-        //   'carbohydrates': carbohydrates
-        // });
       }
       /// Add calories per day to map
       listCaloriesPerDay[day].addAll({
@@ -155,14 +134,16 @@ class ProductsData {
     for (int i = 0; i <= 3; i++) {
       final listTypes = ['calories', 'proteins', 'fats', 'carbohydrates'];
       UserData.mixedData.add({
-        'index': listCaloriesPerDay[day]['date'],
+        'index': day,
         'type': listTypes[i],
         'value': listCaloriesPerDay[day][listTypes[i]],
       });
 
     }}
-    print('MIXED DATA: ${UserData.mixedData}');
-    print('CALORIES MAP: $listCaloriesPerDay');
+    // print('MIXED DATA: ${UserData.mixedData}');
+    // print('CALORIES MAP: $listCaloriesPerDay');
+
     return listCaloriesPerDay;
+
   }
 }

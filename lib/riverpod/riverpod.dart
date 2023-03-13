@@ -13,3 +13,5 @@ return Jiffy().date;
 final selectedDayProductsProvider = StateProvider<List<ProductModel>>((ref) {
   return [];
 });
+
+final isLoadedProvider = StateProvider<bool>((ref) => false);

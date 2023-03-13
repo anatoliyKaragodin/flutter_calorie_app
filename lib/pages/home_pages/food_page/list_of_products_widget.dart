@@ -17,6 +17,7 @@ class _ListOfProductsWidgetState extends ConsumerState<ListOfProductsWidget> {
   @override
   Widget build(BuildContext context) {
     final products = ref.watch(selectedDayProductsProvider);
+    final isLoaded = ref.watch(isLoadedProvider);
     return Expanded(
       child: ListView.builder(
           itemCount: products.length,

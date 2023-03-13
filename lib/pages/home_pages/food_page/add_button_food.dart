@@ -1,23 +1,25 @@
 import 'package:flutter_calorie_app/DB/db_helper/db_helper.dart';
 import 'package:flutter_calorie_app/DB/models/product_model.dart';
 import 'package:flutter_calorie_app/DB/user_data/user_data.dart';
+import 'package:flutter_calorie_app/main.dart';
 import 'package:flutter_calorie_app/pages/home_pages/food_page/food_page.dart';
 import 'package:flutter_calorie_app/pages/home_pages/user_data_start_page/form_field_widget.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
 
+import '../../../riverpod/riverpod.dart';
 import '../../../utils/dimensions_util.dart';
 import '../../../utils/my_parameters.dart';
 
-class AddButtonFood extends StatefulWidget {
+class AddButtonFood extends ConsumerStatefulWidget {
   final String route = 'add button food';
   final String label = 'Add product';
   const AddButtonFood({Key? key}) : super(key: key);
 
   @override
-  State<AddButtonFood> createState() => _AddButtonFoodState();
+  ConsumerState<AddButtonFood> createState() => _AddButtonFoodState();
 }
 
-class _AddButtonFoodState extends State<AddButtonFood> {
+class _AddButtonFoodState extends ConsumerState<AddButtonFood> {
   final _formKey = GlobalKey<FormState>();
   final List<TextEditingController> listOfTextControllers = [
     TextEditingController(),
@@ -161,19 +163,31 @@ class _AddButtonFoodState extends State<AddButtonFood> {
                 ))),
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
+                    container
+                        .read(isLoadedProvider.notifier)
+                        .update((state) => false);
+
                     /// Product data
                     var productData = ProductModel(
                         label: listOfTextControllers[0].text,
                         calories: double.parse(listOfTextControllers[1].text),
                         proteins: double.parse(listOfTextControllers[2].text),
                         fats: double.parse(listOfTextControllers[3].text),
-                        carbohydrates: double.parse(listOfTextControllers[4].text),
+                        carbohydrates:
+                            double.parse(listOfTextControllers[4].text),
                         createdDate: DateTime.now());
+
                     /// Save product data
                     await DBHelper.instance.createProductData(productData);
-                    /// Read all products data
-                    ProductsData.listProducts = await DBHelper.instance.readAllProductData();
 
+                    /// Read all products data
+                    ProductsData.listProducts =
+                        await DBHelper.instance.readAllProductData();
+                    ProductsData().calcByDay();
+                    /// Change selected day products
+                    ref
+                        .read(selectedDayProductsProvider.notifier)
+                        .update((state) => ProductsData().sortByDay(ref.read(selectedDayProvider)));
 
                     Navigator.of(context).pushNamed(FoodPage().route);
                   }

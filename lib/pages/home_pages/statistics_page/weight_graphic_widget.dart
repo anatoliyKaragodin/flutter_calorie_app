@@ -34,7 +34,7 @@ class _WeightGraphicWidgetState extends State<WeightGraphicWidget> {
                 },
                 elements: [
                   IntervalElement(
-                    size: SizeAttr(value: 9),
+                    size: SizeAttr(value: 6),
                   )
                 ],
                 axes: [

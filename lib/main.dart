@@ -25,6 +25,8 @@ void main() async{
   /// Read all products
   ProductsData.listProducts = await DBHelper.instance.readAllProductData();
   ProductsData().calcByDay();
+  /// Read all user weights
+ UserData().sortUserWeightsPerMonth(Jiffy().month);
 
   if(startData?.id != null) {
     appHomePageIndex = 1;

@@ -140,6 +140,8 @@ class _AddButtonState extends State<AddButton> {
                         isMale: startUserGenger);
                     /// Save new user data
                     await DBHelper.instance.createUserData(tableUserData, userData);
+                    /// Read all user weights
+                    UserData().sortUserWeightsPerMonth(Jiffy().month);
                     Navigator.of(context).pushNamed(CurrentSettingsPage().route);
                   }
                 },

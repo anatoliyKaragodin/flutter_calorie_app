@@ -36,7 +36,7 @@ class _MixedGraphicWidgetState extends State<MixedGraphicWidget> {
               data: UserData.mixedData,
               variables: {
                 'index': Variable(
-                  accessor: (Map map) => map['date'].toString(),
+                  accessor: (Map map) => map['index'].toString(),
                 ),
                 'type': Variable(
                   accessor: (Map map) => map['type'] as String,
