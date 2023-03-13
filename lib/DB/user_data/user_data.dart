@@ -12,42 +12,42 @@ double currentUserWeight = 0;
 int currentUserAge = 0;
 
 class UserData {
-  static List<Map<String, Object>> mixedData = [
-    {"type": "Email", "index": 0, "value": 120},
-    {"type": "Email", "index": 1, "value": 132},
-    {"type": "Email", "index": 2, "value": 101},
-    {"type": "Email", "index": 3, "value": 134},
-    {"type": "Email", "index": 4, "value": 90},
-    {"type": "Email", "index": 5, "value": 230},
-    {"type": "Email", "index": 6, "value": 210},
-    {"type": "Affiliate", "index": 0, "value": 220},
-    {"type": "Affiliate", "index": 1, "value": 182},
-    {"type": "Affiliate", "index": 2, "value": 191},
-    {"type": "Affiliate", "index": 3, "value": 234},
-    {"type": "Affiliate", "index": 4, "value": 290},
-    {"type": "Affiliate", "index": 5, "value": 330},
-    {"type": "Affiliate", "index": 6, "value": 310},
-    {"type": "Video", "index": 0, "value": 150},
-    {"type": "Video", "index": 1, "value": 232},
-    {"type": "Video", "index": 2, "value": 201},
-    {"type": "Video", "index": 3, "value": 154},
-    {"type": "Video", "index": 4, "value": 190},
-    {"type": "Video", "index": 5, "value": 330},
-    {"type": "Video", "index": 6, "value": 410},
-    {"type": "Direct", "index": 0, "value": 320},
-    {"type": "Direct", "index": 1, "value": 332},
-    {"type": "Direct", "index": 2, "value": 301},
-    {"type": "Direct", "index": 3, "value": 334},
-    {"type": "Direct", "index": 4, "value": 390},
-    {"type": "Direct", "index": 5, "value": 330},
-    {"type": "Direct", "index": 6, "value": 320},
-    {"type": "Search", "index": 0, "value": 320},
-    {"type": "Search", "index": 1, "value": 432},
-    {"type": "Search", "index": 2, "value": 401},
-    {"type": "Search", "index": 3, "value": 434},
-    {"type": "Search", "index": 4, "value": 390},
-    {"type": "Search", "index": 5, "value": 430},
-    {"type": "Search", "index": 6, "value": 420},
+  static List<Map<String, dynamic>> mixedData = [
+    // {"type": "Email", "index": 0, "value": 120},
+    // {"type": "Email", "index": 1, "value": 132},
+    // {"type": "Email", "index": 2, "value": 101},
+    // {"type": "Email", "index": 3, "value": 134},
+    // {"type": "Email", "index": 4, "value": 90},
+    // {"type": "Email", "index": 5, "value": 230},
+    // {"type": "Email", "index": 6, "value": 210},
+    // {"type": "Affiliate", "index": 0, "value": 220},
+    // {"type": "Affiliate", "index": 1, "value": 182},
+    // {"type": "Affiliate", "index": 2, "value": 191},
+    // {"type": "Affiliate", "index": 3, "value": 234},
+    // {"type": "Affiliate", "index": 4, "value": 290},
+    // {"type": "Affiliate", "index": 5, "value": 330},
+    // {"type": "Affiliate", "index": 6, "value": 310},
+    // {"type": "Video", "index": 0, "value": 150},
+    // {"type": "Video", "index": 1, "value": 232},
+    // {"type": "Video", "index": 2, "value": 201},
+    // {"type": "Video", "index": 3, "value": 154},
+    // {"type": "Video", "index": 4, "value": 190},
+    // {"type": "Video", "index": 5, "value": 330},
+    // {"type": "Video", "index": 6, "value": 410},
+    // {"type": "Direct", "index": 0, "value": 320},
+    // {"type": "Direct", "index": 1, "value": 332},
+    // {"type": "Direct", "index": 2, "value": 301},
+    // {"type": "Direct", "index": 3, "value": 334},
+    // {"type": "Direct", "index": 4, "value": 390},
+    // {"type": "Direct", "index": 5, "value": 330},
+    // {"type": "Direct", "index": 6, "value": 320},
+    // {"type": "Search", "index": 0, "value": 320},
+    // {"type": "Search", "index": 1, "value": 432},
+    // {"type": "Search", "index": 2, "value": 401},
+    // {"type": "Search", "index": 3, "value": 434},
+    // {"type": "Search", "index": 4, "value": 390},
+    // {"type": "Search", "index": 5, "value": 430},
+    // {"type": "Search", "index": 6, "value": 420},
   ];
 
   static List<Map<String, Object>> weightData = [
@@ -131,21 +131,29 @@ class ProductsData {
         fats += products[day][i].fats;
         carbohydrates += products[day][i].carbohydrates;
 
-
-         /// Add calories per day to map
-         listCaloriesPerDay[day].addAll({
-           'date': day,
-           'calories': calories,
-           'proteins': proteins,
-           'fats': fats,
-           'carbohydrates': carbohydrates
-         });
-
+        /// Add calories per day to map
+        listCaloriesPerDay[day].addAll({
+          'date': day,
+          'calories': calories,
+          'proteins': proteins,
+          'fats': fats,
+          'carbohydrates': carbohydrates
+        });
       }
-        }
+    }
 
+    for (int day = 1; day < daysInMonth; day++) {
+    for (int i = 0; i <= 3; i++) {
+      final listTypes = ['calories', 'proteins', 'fats', 'carbohydrates'];
+      UserData.mixedData.add({
+        'index': listCaloriesPerDay[day]['date'],
+        'type': listTypes[i],
+        'value': listCaloriesPerDay[day][listTypes[i]],
+      });
+
+    }}
+    print('MIXED DATA: ${UserData.mixedData}');
     print('CALORIES MAP: $listCaloriesPerDay');
-
     return listCaloriesPerDay;
   }
 }

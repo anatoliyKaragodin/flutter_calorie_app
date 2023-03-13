@@ -73,7 +73,7 @@ class _ListOfDaysWidgetState extends ConsumerState<ListOfDaysWidget> {
                             top: Dimensions.height10 / 2,
                             bottom: Dimensions.height10 / 2),
                         child: Text(
-                            'Proteins: ${listOfDayData[index]['proteins']}'),
+                            'Proteins: ${listOfDayData[index]['proteins']} g'),
                       ),
 
                       /// Fats
@@ -81,7 +81,7 @@ class _ListOfDaysWidgetState extends ConsumerState<ListOfDaysWidget> {
                         padding: EdgeInsets.only(
                             top: Dimensions.height10 / 2,
                             bottom: Dimensions.height10 / 2),
-                        child: Text('Fats: ${listOfDayData[index]['fats']}'),
+                        child: Text('Fats: ${listOfDayData[index]['fats']} g'),
                       ),
 
                       /// Carbohydrates
@@ -90,7 +90,7 @@ class _ListOfDaysWidgetState extends ConsumerState<ListOfDaysWidget> {
                             top: Dimensions.height10 / 2,
                             bottom: Dimensions.height10 / 2),
                         child: Text(
-                            'Carbohydrates: ${listOfDayData[index]['carbohydrates']}'),
+                            'Carbohydrates: ${listOfDayData[index]['carbohydrates']} g'),
                       ),
                     ],
                   ),

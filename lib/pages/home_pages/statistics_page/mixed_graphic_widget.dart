@@ -26,7 +26,7 @@ class _MixedGraphicWidgetState extends State<MixedGraphicWidget> {
     /// Mixed graphic
     return Column(
       children: [
-        Text('Calories, proteins, fats, carbohydrates monthly'),
+        Text('Calories, proteins, fats and carbohydrates monthly'),
         Container(
           margin: const EdgeInsets.only(top: 10),
           width: Dimensions.width10 * 35,
@@ -36,7 +36,7 @@ class _MixedGraphicWidgetState extends State<MixedGraphicWidget> {
               data: UserData.mixedData,
               variables: {
                 'index': Variable(
-                  accessor: (Map map) => map['index'].toString(),
+                  accessor: (Map map) => map['date'].toString(),
                 ),
                 'type': Variable(
                   accessor: (Map map) => map['type'] as String,
@@ -58,6 +58,7 @@ class _MixedGraphicWidgetState extends State<MixedGraphicWidget> {
                         Varset('index') * Varset('value') / Varset('type'))
               ],
             ),
+            /// Hide container
             Padding(
               padding: EdgeInsets.only(top: Dimensions.height10 * 28.8),
               child: Container(
