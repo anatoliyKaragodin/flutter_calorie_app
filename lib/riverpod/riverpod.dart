@@ -1,7 +1,5 @@
-import 'package:flutter_calorie_app/DB/models/user_data_model.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
 
-import '../DB/db_helper/constants.dart';
 import '../DB/models/product_model.dart';
 
 final myAppPageIndexProvider = StateProvider<int>((ref) => 0);
@@ -15,3 +13,8 @@ final selectedDayProductsProvider = StateProvider<List<ProductModel>>((ref) {
 });
 
 final isLoadedProvider = StateProvider<bool>((ref) => false);
+
+/// Webview
+final homePageProvider = StateProvider<int>((ref) {
+  return 2;
+});
