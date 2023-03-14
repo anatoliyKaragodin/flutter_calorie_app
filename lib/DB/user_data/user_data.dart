@@ -1,6 +1,4 @@
 import 'package:flutter_calorie_app/DB/db_helper/db_helper.dart';
-import 'package:flutter_calorie_app/main.dart';
-import 'package:flutter_calorie_app/riverpod/riverpod.dart';
 import 'package:flutter_calorie_app/utils/library.dart';
 
 import '../models/product_model.dart';
@@ -107,7 +105,7 @@ class ProductsData {
     }
 
     /// Calc calories for day
-    for (int day = 1; day < daysInMonth; day++) {
+    for (int day = 0; day < daysInMonth; day++) {
       double calories = 0;
       double proteins = 0;
       double fats = 0;

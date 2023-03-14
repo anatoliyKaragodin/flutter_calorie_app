@@ -9,7 +9,7 @@ import '../main_app_page/main_app_page.dart';
 
 class CurrentSettingsPage extends StatefulWidget {
   final String route = 'current settings page';
-  final String label = 'Current settings';
+  final String label = 'Current parameters';
   const CurrentSettingsPage({Key? key}) : super(key: key);
 
   @override
@@ -34,40 +34,46 @@ class _CurrentSettingsPageState extends State<CurrentSettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: MyColors.mainColor200,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed(MainAppPage().route);
-            },
-            icon: MyParameters.backIcon),
-        title: Padding(
-          padding: EdgeInsets.only(left: Dimensions.width10 * 3.5),
-          child: Text(widget.label),
-        ),
-      ),
-      body: Center(
-        child: Container(
-          height: Dimensions.height10 * 12,
-          width: Dimensions.width10 * 22,
-          decoration: BoxDecoration(
-              borderRadius: MyParameters.borderRadius20,
-              color: MyColors.mainColor200),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-
-              Text('Height: $currentUserHeight cm', style: textStyle,),
-              SizedBox(height: Dimensions.height10/2,),
-              Text('Weight: $currentUserWeight kg', style: textStyle,),
-              SizedBox(height: Dimensions.height10/2,),
-              Text('Age: $currentUserAge', style: textStyle,),
-            ],
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.of(context).pushNamed(MainAppPage().route);
+        return true;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: MyColors.mainColor200,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(MainAppPage().route);
+              },
+              icon: MyParameters.backIcon),
+          title: Padding(
+            padding: EdgeInsets.only(left: Dimensions.width10 * 3.5),
+            child: Text(widget.label),
           ),
         ),
+        body: Center(
+          child: Container(
+            height: Dimensions.height10 * 12,
+            width: Dimensions.width10 * 22,
+            decoration: BoxDecoration(
+                borderRadius: MyParameters.borderRadius20,
+                color: MyColors.mainColor200),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+
+                Text('Height: $currentUserHeight cm', style: textStyle,),
+                SizedBox(height: Dimensions.height10/2,),
+                Text('Weight: $currentUserWeight kg', style: textStyle,),
+                SizedBox(height: Dimensions.height10/2,),
+                Text('Age: $currentUserAge', style: textStyle,),
+              ],
+            ),
+          ),
+        ),
+        floatingActionButton: buildFloatingActionButton(context),
       ),
-      floatingActionButton: buildFloatingActionButton(context),
     );
   }
 

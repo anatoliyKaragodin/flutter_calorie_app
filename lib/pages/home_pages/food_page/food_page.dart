@@ -30,40 +30,46 @@ class _FoodPageState extends ConsumerState<FoodPage> {
   @override
   Widget build(BuildContext context) {
     final selectedDay = ref.watch(selectedDayProvider);
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: MyColors.mainColor200,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed(MainAppPage().route);
-            },
-            icon: MyParameters.backIcon),
-        title: Padding(
-          padding: EdgeInsets.only(left: Dimensions.width10 * 8),
-          child: Text(widget.label),
-        ),
-      ),
-      body: Column(
-        children: [
-          ListOfDaysWidget(),
-          Container(
-            decoration: BoxDecoration(
-                color: MyColors.mainColor200,
-                borderRadius: MyParameters.borderRadius20
-            ),
-            height: Dimensions.height10 * 3,
-            width: Dimensions.screenWidth,
-            child: Center(child: Text('Products list ${Jiffy().year}/${Jiffy().month}/$selectedDay', style: normalTextStyle,)),
+    return WillPopScope(
+      onWillPop: () async {
+        Navigator.of(context).pushNamed(MainAppPage().route);
+        return true;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: MyColors.mainColor200,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(MainAppPage().route);
+              },
+              icon: MyParameters.backIcon),
+          title: Padding(
+            padding: EdgeInsets.only(left: Dimensions.width10 * 8),
+            child: Text(widget.label),
           ),
-          ListOfProductsWidget()
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: MyColors.mainColor200,
-        child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.of(context).pushNamed(AddButtonFood().route);
-        },
+        ),
+        body: Column(
+          children: [
+            ListOfDaysWidget(),
+            Container(
+              decoration: BoxDecoration(
+                  color: MyColors.mainColor200,
+                  borderRadius: MyParameters.borderRadius20
+              ),
+              height: Dimensions.height10 * 3,
+              width: Dimensions.screenWidth,
+              child: Center(child: Text('Products list ${Jiffy().year}/${Jiffy().month}/$selectedDay', style: normalTextStyle,)),
+            ),
+            ListOfProductsWidget()
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: MyColors.mainColor200,
+          child: Icon(Icons.add),
+          onPressed: () {
+            Navigator.of(context).pushNamed(AddButtonFood().route);
+          },
+        ),
       ),
     );
   }

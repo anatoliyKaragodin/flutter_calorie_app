@@ -31,7 +31,7 @@ class _MainAppPageState extends ConsumerState<MainAppPage> {
     return Scaffold(
       body: Center(
         child: SizedBox(
-          width: Dimensions.width10 * 20,
+          width: Dimensions.width10 * 23,
           height: Dimensions.height10 * 28,
           child: ListView.builder(
               itemCount: 4,
