@@ -63,7 +63,7 @@ class _ListOfDaysWidgetState extends ConsumerState<ListOfDaysWidget> {
                             top: Dimensions.height10 / 2,
                             bottom: Dimensions.height10 / 2),
                         child: Text(
-                            '${index + 1} ${Jiffy('${Jiffy().year}/${Jiffy().month}/${index + 1}').EEEE}', style: bigTextStyle,),
+                            '${index+1} ${Jiffy('${Jiffy().year}/${Jiffy().month}/${index + 1}').EEEE}', style: bigTextStyle,),
                       ),
 
                       /// Calories

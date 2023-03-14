@@ -33,8 +33,6 @@ dependencies:
   flutter_riverpod: ^2.2.0
   get: ^4.6.5
   flutter_animate: ^4.0.0
-  audioplayers: ^0.20.1
-  vibration: ^1.7.6
   advertising_id: ^2.4.0
   shared_preferences: ^2.0.17
   flutter_native_timezone: ^2.0.0
@@ -42,14 +40,13 @@ dependencies:
   path_provider: ^2.0.12
   rename: ^2.1.1
   flutter_inappwebview: ^5.7.2+3
-  table_calendar: ^3.0.9
   intl: ^0.18.0
   jiffy: ^5.0.1
-  flutter_downloader: ^1.10.2
   permission_handler: ^10.2.0
   flutter_file_downloader: ^1.1.0+1
   graphic: ^1.0.1
   sqflite: ^2.2.5
+  flutter_user_agentx: ^1.2.4
 
 
 
@@ -81,9 +78,9 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
