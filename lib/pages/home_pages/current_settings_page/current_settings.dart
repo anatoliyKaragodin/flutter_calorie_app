@@ -17,6 +17,7 @@ class CurrentSettingsPage extends StatefulWidget {
 }
 
 class _CurrentSettingsPageState extends State<CurrentSettingsPage> {
+  final String image = 'assets/редактирование списка.png';
   final textStyle = TextStyle(
       color: MyColors.whiteColor,
       fontSize: MyParameters.bigFontSize,
@@ -83,7 +84,10 @@ class _CurrentSettingsPageState extends State<CurrentSettingsPage> {
       onPressed: () {
     Navigator.of(context).pushNamed(AddButton().route);
   },
-  child: Icon(Icons.add),
+  child: SizedBox(
+      height: Dimensions.height10*4,
+      width: Dimensions.width10*4,
+      child: Image.asset(image)),
   );
   }
 }

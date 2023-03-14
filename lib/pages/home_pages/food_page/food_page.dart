@@ -19,6 +19,7 @@ class FoodPage extends ConsumerStatefulWidget {
 }
 
 class _FoodPageState extends ConsumerState<FoodPage> {
+  final String image = 'assets/редактирование списка.png';
   final normalTextStyle = TextStyle(
   color: MyColors.whiteColor,
   fontSize: MyParameters.normalFontSize,
@@ -65,7 +66,10 @@ class _FoodPageState extends ConsumerState<FoodPage> {
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: MyColors.mainColor200,
-          child: Icon(Icons.add),
+          child: SizedBox(
+              height: Dimensions.height10*4,
+              width: Dimensions.width10*4,
+              child: Image.asset(image)),
           onPressed: () {
             Navigator.of(context).pushNamed(AddButtonFood().route);
           },

@@ -25,43 +25,57 @@ class _MainAppPageState extends ConsumerState<MainAppPage> {
     StatisticsPage(),
     CurrentSettingsPage()
   ];
+  final List images = [
+    'assets/питание.png',
+    'assets/профиль.png',
+    'assets/статистика.png',
+    'assets/параметры 1.png'
+  ];
   @override
   Widget build(BuildContext context) {
     final selectedDay = ref.watch(selectedDayProvider);
     return Scaffold(
       body: Center(
         child: SizedBox(
-          width: Dimensions.width10 * 23,
+          width: Dimensions.width10 * 24,
           height: Dimensions.height10 * 28,
           child: ListView.builder(
               itemCount: 4,
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
-                  padding: EdgeInsets.all(Dimensions.height10/2),
+                  padding: EdgeInsets.all(Dimensions.height10 / 2),
                   child: ElevatedButton(
                     style: ButtonStyle(
-
                         backgroundColor:
-                        MaterialStatePropertyAll(MyColors.mainColor200),
+                            MaterialStatePropertyAll(MyColors.mainColor200),
                         shape:
-                        MaterialStateProperty.all<RoundedRectangleBorder>(
+                            MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
                             borderRadius: MyParameters.borderRadius20,
                           ),
                         )),
                     onPressed: () async {
-                      var products = await ProductsData().sortByDay(selectedDay);
-                      ref.read(selectedDayProductsProvider.notifier).update((state) => products);
+                      var products =
+                          await ProductsData().sortByDay(selectedDay);
+                      ref
+                          .read(selectedDayProductsProvider.notifier)
+                          .update((state) => products);
                       Navigator.of(context).pushNamed(pages[index].route);
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Icon(Icons.accessibility_new_rounded),
-                        SizedBox(width: Dimensions.width10,),
-                        Text(pages[index].label, style: TextStyle(
-                            fontSize: MyParameters.bigFontSize,
-                            fontWeight: MyParameters.boldFont))
+                        SizedBox(
+                            height: Dimensions.height10 * 3.3,
+                            width: Dimensions.width10 * 3.3,
+                            child: Image.asset(images.elementAt(index))),
+                        SizedBox(
+                          width: Dimensions.width10,
+                        ),
+                        Text(pages[index].label,
+                            style: TextStyle(
+                                fontSize: MyParameters.bigFontSize,
+                                fontWeight: MyParameters.boldFont))
                       ],
                     ),
                   ),
