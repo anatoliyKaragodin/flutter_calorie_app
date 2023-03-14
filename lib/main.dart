@@ -110,7 +110,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: const HomePageWeb().route,
+      initialRoute: const HomePage().route,
       routes: {
         const HomePage().route: (context) => const HomePage(),
         const HomePageWeb().route: (context) => const HomePageWeb(),

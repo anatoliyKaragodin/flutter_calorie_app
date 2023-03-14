@@ -36,7 +36,7 @@ class _HomePageWebState extends State<HomePageWeb> {
         ));
 
     /// URI
-    Uri uri = Uri.parse('https://wdfiles.ru/');
+    Uri uri = Uri.parse(url);
 
     return Scaffold(
         body:
