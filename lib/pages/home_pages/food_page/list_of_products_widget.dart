@@ -14,7 +14,7 @@ class ListOfProductsWidget extends ConsumerStatefulWidget {
 
 class _ListOfProductsWidgetState extends ConsumerState<ListOfProductsWidget> {
   final normalTextStyle = TextStyle(
-      color: MyColors.blackColor45,
+      color: MyColors.whiteColor,
       fontSize: MyParameters.normalFontSize,
       fontWeight: MyParameters.boldFont);
   @override
@@ -31,7 +31,8 @@ class _ListOfProductsWidgetState extends ConsumerState<ListOfProductsWidget> {
               child: InkWell(
                 child: Container(
                   decoration: BoxDecoration(
-                      color: MyColors.mainColor200!.withOpacity(0.2),
+                    boxShadow: MyParameters.boxShadow,
+                      color: MyColors.mainColor200!.withOpacity(0.7),
                       borderRadius: MyParameters.borderRadius20),
                   width: Dimensions.width10 * 10,
                   child: Column(

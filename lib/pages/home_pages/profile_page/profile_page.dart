@@ -37,50 +37,54 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
           child: Text(widget.label),
         ),
       ),
-      body: Center(
-        child: Container(
-          height: Dimensions.height10 * 18,
-          width: Dimensions.width10 * 30,
-          decoration: BoxDecoration(
-              borderRadius: MyParameters.borderRadius20,
-              color: MyColors.mainColor200),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Text(startUserGenger ? 'Male' : 'Female', style: TextStyle(
-                  color: MyColors.whiteColor,
-                  fontSize: MyParameters.bigFontSize,
-                  fontWeight: MyParameters.boldFont)),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text('Starting:', style: textStyle),
-                      SizedBox(height: Dimensions.height10/2,),
-                      Text('Height: $startUserHeight cm', style: textStyle),
-                      SizedBox(height: Dimensions.height10/2,),
-                      Text('Weight: $startUserWeight kg', style: textStyle),
-                      SizedBox(height: Dimensions.height10/2,),
-                      Text('Age: $startUserAge', style: textStyle),
-                    ],
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text('Current:', style: textStyle),
-                      SizedBox(height: Dimensions.height10/2,),
-                      Text('Height: $currentUserHeight cm', style: textStyle),
-                      SizedBox(height: Dimensions.height10/2,),
-                      Text('Weight: $currentUserWeight kg', style: textStyle),
-                      SizedBox(height: Dimensions.height10/2,),
-                      Text('Age: $currentUserAge', style: textStyle),
-                    ],
-                  ),
-                ],
-              ),
-            ],
+      body: Container(
+        decoration: MyParameters.backgroundImage,
+        child: Center(
+          child: Container(
+            height: Dimensions.height10 * 18,
+            width: Dimensions.width10 * 30,
+            decoration: BoxDecoration(
+              boxShadow: MyParameters.boxShadow,
+                borderRadius: MyParameters.borderRadius20,
+                color: MyColors.mainColor200),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(startUserGenger ? 'Male' : 'Female', style: TextStyle(
+                    color: MyColors.whiteColor,
+                    fontSize: MyParameters.bigFontSize,
+                    fontWeight: MyParameters.boldFont)),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text('Starting:', style: textStyle),
+                        SizedBox(height: Dimensions.height10/2,),
+                        Text('Height: $startUserHeight cm', style: textStyle),
+                        SizedBox(height: Dimensions.height10/2,),
+                        Text('Weight: $startUserWeight kg', style: textStyle),
+                        SizedBox(height: Dimensions.height10/2,),
+                        Text('Age: $startUserAge', style: textStyle),
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text('Current:', style: textStyle),
+                        SizedBox(height: Dimensions.height10/2,),
+                        Text('Height: $currentUserHeight cm', style: textStyle),
+                        SizedBox(height: Dimensions.height10/2,),
+                        Text('Weight: $currentUserWeight kg', style: textStyle),
+                        SizedBox(height: Dimensions.height10/2,),
+                        Text('Age: $currentUserAge', style: textStyle),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -14,11 +14,11 @@ class ListOfDaysWidget extends ConsumerStatefulWidget {
 
 class _ListOfDaysWidgetState extends ConsumerState<ListOfDaysWidget> {
   final normalTextStyle = TextStyle(
-      color: MyColors.blackColor45,
+      color: MyColors.whiteColor,
       fontSize: MyParameters.normalFontSize,
       fontWeight: MyParameters.boldFont);
   final bigTextStyle = TextStyle(
-      color: MyColors.blackColor45,
+      color: MyColors.whiteColor,
       fontSize: MyParameters.bigFontSize,
       fontWeight: MyParameters.boldFont);
   @override
@@ -50,9 +50,10 @@ class _ListOfDaysWidgetState extends ConsumerState<ListOfDaysWidget> {
                 },
                 child: Container(
                   decoration: BoxDecoration(
+                    boxShadow: MyParameters.boxShadow,
                       color: index + 1 == selectedDay
-                          ? MyColors.mainColor200!.withOpacity(0.6)
-                          : MyColors.mainColor200!.withOpacity(0.1),
+                          ? MyColors.mainColor200
+                          : MyColors.mainColor200!.withOpacity(0.5),
                       borderRadius: MyParameters.borderRadius20),
                   width: Dimensions.width10 * 18,
                   child: Column(

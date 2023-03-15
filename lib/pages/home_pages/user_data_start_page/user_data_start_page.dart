@@ -39,7 +39,8 @@ class _UserDataStartPageState extends ConsumerState<UserDataStartPage> {
         return true;
       },
       child: Scaffold(
-        body: SafeArea(
+        body: Container(
+          decoration: MyParameters.backgroundImage,
           child: Center(
             child: SizedBox(
               child: Form(
@@ -58,10 +59,19 @@ class _UserDataStartPageState extends ConsumerState<UserDataStartPage> {
                             children: [
                               /// Height
                               TextFormField(
+                                style: MyParameters.whiteTextStyle,
+                                cursorColor: MyColors.whiteColor,
                                 keyboardType: TextInputType.number,
                                 controller: listOfTextControllers[0],
-                                decoration:
-                                    InputDecoration(hintText: listOfHints[0]),
+
+                                decoration: InputDecoration(
+                                  enabledBorder: MyParameters.underlineBorder,
+                                    focusedBorder: MyParameters.underlineBorder,
+                                    hintText: listOfHints[0],
+                                    hintStyle:
+                                        TextStyle(color: MyColors.whiteColor),
+
+                                ),
                                 // The validator receives the text that the user has entered.
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
@@ -73,10 +83,16 @@ class _UserDataStartPageState extends ConsumerState<UserDataStartPage> {
 
                               /// Weight
                               TextFormField(
+                                style: MyParameters.whiteTextStyle,
+                                cursorColor: MyColors.whiteColor,
                                 keyboardType: TextInputType.number,
                                 controller: listOfTextControllers[1],
-                                decoration:
-                                    InputDecoration(hintText: listOfHints[1]),
+                                decoration: InputDecoration(
+                                    enabledBorder: MyParameters.underlineBorder,
+                                    focusedBorder: MyParameters.underlineBorder,
+                                    hintText: listOfHints[1],
+                                    hintStyle:
+                                        TextStyle(color: MyColors.whiteColor)),
                                 // The validator receives the text that the user has entered.
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
@@ -88,10 +104,16 @@ class _UserDataStartPageState extends ConsumerState<UserDataStartPage> {
 
                               /// Age
                               TextFormField(
+                                style: MyParameters.whiteTextStyle,
+                                cursorColor: MyColors.whiteColor,
                                 keyboardType: TextInputType.number,
                                 controller: listOfTextControllers[2],
-                                decoration:
-                                    InputDecoration(hintText: listOfHints[2]),
+                                decoration: InputDecoration(
+                                    enabledBorder: MyParameters.underlineBorder,
+                                    focusedBorder: MyParameters.underlineBorder,
+                                    hintText: listOfHints[2],
+                                    hintStyle:
+                                        TextStyle(color: MyColors.whiteColor)),
                                 // The validator receives the text that the user has entered.
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
@@ -116,12 +138,18 @@ class _UserDataStartPageState extends ConsumerState<UserDataStartPage> {
                               height: Dimensions.height10 * 3,
                               width: Dimensions.width10 * 16,
                               child: ListTile(
-                                title:  Text('Male', style: TextStyle(
-                                    color: _isMale? MyColors.mainColor200 :MyColors.blackColor45,
-                                    fontSize: MyParameters.bigFontSize,
-                                    fontWeight: MyParameters.boldFont)),
+                                title: Text('Male',
+                                    style: TextStyle(
+                                        color: _isMale
+                                            ? MyColors.whiteColor
+                                            : MyColors.whiteColor70!
+                                                .withOpacity(0.5),
+                                        fontSize: MyParameters.bigFontSize,
+                                        fontWeight: MyParameters.boldFont)),
                                 leading: Radio<bool>(
-                                  activeColor: MyColors.mainColor200,
+                                  activeColor: MyColors.whiteColor,
+                                  fillColor: MaterialStatePropertyAll(
+                                      MyColors.whiteColor),
                                   value: true,
                                   groupValue: _isMale,
                                   onChanged: (value) {
@@ -136,12 +164,18 @@ class _UserDataStartPageState extends ConsumerState<UserDataStartPage> {
                               height: Dimensions.height10 * 3,
                               width: Dimensions.width10 * 16,
                               child: ListTile(
-                                title: Text('Female', style: TextStyle(
-                                  color: !_isMale ? MyColors.mainColor200 :MyColors.blackColor45,
-                                    fontSize: MyParameters.bigFontSize,
-                                    fontWeight: MyParameters.boldFont) ),
+                                title: Text('Female',
+                                    style: TextStyle(
+                                        color: !_isMale
+                                            ? MyColors.whiteColor
+                                            : MyColors.whiteColor70!
+                                                .withOpacity(0.5),
+                                        fontSize: MyParameters.bigFontSize,
+                                        fontWeight: MyParameters.boldFont)),
                                 leading: Radio<bool>(
-                                  activeColor: MyColors.mainColor200,
+                                  activeColor: MyColors.whiteColor,
+                                  fillColor: MaterialStatePropertyAll(
+                                      MyColors.whiteColor),
                                   value: false,
                                   groupValue: _isMale,
                                   onChanged: (bool? value) {
@@ -162,11 +196,10 @@ class _UserDataStartPageState extends ConsumerState<UserDataStartPage> {
                       /// Submit button
                       ElevatedButton(
                         style: ButtonStyle(
-
                             backgroundColor:
                                 MaterialStatePropertyAll(MyColors.mainColor200),
-                            shape:
-                                MaterialStateProperty.all<RoundedRectangleBorder>(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
                               RoundedRectangleBorder(
                                 borderRadius: MyParameters.borderRadius20,
                               ),
@@ -201,7 +234,8 @@ class _UserDataStartPageState extends ConsumerState<UserDataStartPage> {
                             UserDataModel userData = UserDataModel(
                                 createdTime: DateTime.now(),
                                 age: int.parse(listOfTextControllers[2].text),
-                                height: int.parse(listOfTextControllers[0].text),
+                                height:
+                                    int.parse(listOfTextControllers[0].text),
                                 weight:
                                     double.parse(listOfTextControllers[1].text),
                                 isMale: _isMale);
@@ -209,17 +243,20 @@ class _UserDataStartPageState extends ConsumerState<UserDataStartPage> {
                                 .createUserData(tableUserDataStart, userData);
                             await DBHelper.instance
                                 .createUserData(tableUserData, userData);
+
                             /// Read all user weights
                             UserData().sortUserWeightsPerMonth(Jiffy().month);
                             print('Create user data with ID: $id');
 
                             /// Go to MainAppPage()
-                            Navigator.of(context).pushNamed(MainAppPage().route);
+                            Navigator.of(context)
+                                .pushNamed(MainAppPage().route);
                           }
                         },
-                        child: Text('Submit', style: TextStyle(
-                            fontSize: MyParameters.bigFontSize,
-                            fontWeight: MyParameters.boldFont) ),
+                        child: Text('Submit',
+                            style: TextStyle(
+                                fontSize: MyParameters.bigFontSize,
+                                fontWeight: MyParameters.boldFont)),
                       ),
                     ],
                   )),

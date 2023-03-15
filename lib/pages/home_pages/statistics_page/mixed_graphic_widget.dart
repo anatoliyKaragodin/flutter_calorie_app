@@ -28,7 +28,7 @@ class _MixedGraphicWidgetState extends State<MixedGraphicWidget> {
       children: [
         Text('Calories, proteins, fats and carbohydrates monthly',
             style: TextStyle(
-                color: MyColors.blackColor45,
+                color: MyColors.whiteColor,
                 fontSize: MyParameters.normalFontSize,
                 fontWeight: MyParameters.boldFont)),
         SizedBox(
@@ -72,7 +72,7 @@ class _MixedGraphicWidgetState extends State<MixedGraphicWidget> {
               padding: EdgeInsets.only(top: Dimensions.height10 * 28.8),
               child: Container(
                 height: Dimensions.height10,
-                color: Theme.of(context).scaffoldBackgroundColor,
+                color: MyColors.mainColorBackground,
               ),
             ),
           ]),
@@ -94,7 +94,7 @@ class _MixedGraphicWidgetState extends State<MixedGraphicWidget> {
                   ),
                   Text(listOfLabels[0],
                       style: TextStyle(
-                          color: MyColors.blackColor45,
+                          color: MyColors.whiteColor,
                           fontSize: MyParameters.normalFontSize,
                           fontWeight: MyParameters.boldFont))
                 ],
@@ -111,7 +111,7 @@ class _MixedGraphicWidgetState extends State<MixedGraphicWidget> {
                   ),
                   Text(listOfLabels[1],
                       style: TextStyle(
-                          color: MyColors.blackColor45,
+                          color: MyColors.whiteColor,
                           fontSize: MyParameters.normalFontSize,
                           fontWeight: MyParameters.boldFont))
                 ],
@@ -128,7 +128,7 @@ class _MixedGraphicWidgetState extends State<MixedGraphicWidget> {
                   ),
                   Text(listOfLabels[2],
                       style: TextStyle(
-                          color: MyColors.blackColor45,
+                          color: MyColors.whiteColor,
                           fontSize: MyParameters.normalFontSize,
                           fontWeight: MyParameters.boldFont))
                 ],
@@ -145,7 +145,7 @@ class _MixedGraphicWidgetState extends State<MixedGraphicWidget> {
                   ),
                   Text(listOfLabels[3],
                       style: TextStyle(
-                          color: MyColors.blackColor45,
+                          color: MyColors.whiteColor,
                           fontSize: MyParameters.normalFontSize,
                           fontWeight: MyParameters.boldFont))
                 ],
