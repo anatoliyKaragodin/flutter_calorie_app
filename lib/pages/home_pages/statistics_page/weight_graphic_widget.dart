@@ -19,7 +19,7 @@ class _WeightGraphicWidgetState extends State<WeightGraphicWidget> {
     return Column(
       children: [
         Text('Weight monthly', style: TextStyle(
-          color: MyColors.blackColor45,
+          color: MyColors.whiteColor,
             fontSize: MyParameters.normalFontSize,
             fontWeight: MyParameters.boldFont)),
         SizedBox(height: Dimensions.height10,),
@@ -49,10 +49,11 @@ class _WeightGraphicWidgetState extends State<WeightGraphicWidget> {
                   Defaults.verticalAxis,
                 ],
               ),
+              /// Hide container
               Padding(
                 padding: EdgeInsets.only(top: Dimensions.height10*18.8),
                 child: Container(height: Dimensions.height10,
-                  color: Theme.of(context).scaffoldBackgroundColor,),
+                  color: MyColors.mainColorBackground,),
               ),
             ],
           ),

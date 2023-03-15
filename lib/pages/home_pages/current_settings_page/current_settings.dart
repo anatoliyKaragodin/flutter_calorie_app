@@ -49,27 +49,31 @@ class _CurrentSettingsPageState extends State<CurrentSettingsPage> {
               },
               icon: MyParameters.backIcon),
           title: Padding(
-            padding: EdgeInsets.only(left: Dimensions.width10 * 3.5),
+            padding: EdgeInsets.only(left: Dimensions.width10 * 2),
             child: Text(widget.label),
           ),
         ),
-        body: Center(
-          child: Container(
-            height: Dimensions.height10 * 12,
-            width: Dimensions.width10 * 22,
-            decoration: BoxDecoration(
-                borderRadius: MyParameters.borderRadius20,
-                color: MyColors.mainColor200),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+        body: Container(
+          decoration: MyParameters.backgroundImage,
+          child: Center(
+            child: Container(
+              height: Dimensions.height10 * 12,
+              width: Dimensions.width10 * 22,
+              decoration: BoxDecoration(
+                boxShadow: MyParameters.boxShadow,
+                  borderRadius: MyParameters.borderRadius20,
+                  color: MyColors.mainColor200),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
 
-                Text('Height: $currentUserHeight cm', style: textStyle,),
-                SizedBox(height: Dimensions.height10/2,),
-                Text('Weight: $currentUserWeight kg', style: textStyle,),
-                SizedBox(height: Dimensions.height10/2,),
-                Text('Age: $currentUserAge', style: textStyle,),
-              ],
+                  Text('Height: $currentUserHeight cm', style: textStyle,),
+                  SizedBox(height: Dimensions.height10/2,),
+                  Text('Weight: $currentUserWeight kg', style: textStyle,),
+                  SizedBox(height: Dimensions.height10/2,),
+                  Text('Age: $currentUserAge', style: textStyle,),
+                ],
+              ),
             ),
           ),
         ),

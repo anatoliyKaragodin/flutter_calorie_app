@@ -33,21 +33,25 @@ class _StatisticsPageState extends State<StatisticsPage> {
           child: Text(widget.label),
         ),
       ),
-      body: Column(
-        children: [
-          SizedBox(
-            height: Dimensions.height10 * 2,
-          ),
+      body: Container(
+        color: MyColors.mainColorBackground,
+        //decoration: MyParameters.backgroundImage,
+        child: Column(
+          children: [
+            SizedBox(
+              height: Dimensions.height10 * 2,
+            ),
 
-          /// Weight graphic
-          WeightGraphicWidget(),
-          SizedBox(
-            height: Dimensions.height10 * 3,
-          ),
+            /// Weight graphic
+            WeightGraphicWidget(),
+            SizedBox(
+              height: Dimensions.height10 * 3,
+            ),
 
-          /// Mixed graphic
-          MixedGraphicWidget(),
-        ],
+            /// Mixed graphic
+            MixedGraphicWidget(),
+          ],
+        ),
       ),
     );
   }

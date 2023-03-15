@@ -49,20 +49,23 @@ class _FoodPageState extends ConsumerState<FoodPage> {
             child: Text(widget.label),
           ),
         ),
-        body: Column(
-          children: [
-            ListOfDaysWidget(),
-            Container(
-              decoration: BoxDecoration(
-                  color: MyColors.mainColor200,
-                  borderRadius: MyParameters.borderRadius20
+        body: Container(
+          decoration: MyParameters.backgroundImage,
+          child: Column(
+            children: [
+              ListOfDaysWidget(),
+              Container(
+                decoration: BoxDecoration(
+                    color: MyColors.mainColor200,
+                    borderRadius: MyParameters.borderRadius20
+                ),
+                height: Dimensions.height10 * 3,
+                width: Dimensions.screenWidth,
+                child: Center(child: Text('Products list ${Jiffy().year}/${Jiffy().month}/$selectedDay', style: normalTextStyle,)),
               ),
-              height: Dimensions.height10 * 3,
-              width: Dimensions.screenWidth,
-              child: Center(child: Text('Products list ${Jiffy().year}/${Jiffy().month}/$selectedDay', style: normalTextStyle,)),
-            ),
-            ListOfProductsWidget()
-          ],
+              ListOfProductsWidget()
+            ],
+          ),
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: MyColors.mainColor200,

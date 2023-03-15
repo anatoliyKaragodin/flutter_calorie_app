@@ -51,121 +51,142 @@ class _AddButtonState extends State<AddButton> {
             child: Text(widget.label),
           ),
         ),
-        body: Center(
-          child: Container(
-            height: Dimensions.height10 * 40,
-            width: Dimensions.width10 * 30,
-            // color: Colors.red,
-            child: Column(
-              children: [
-                /// Form fields
-                Form(
-                  key: _formKey,
-                  child: SizedBox(
-                      height: Dimensions.height10 * 25,
-                      width: Dimensions.width10 * 15,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: Dimensions.height10 * 22,
-                            width: Dimensions.width10 * 15,
-                            child: SizedBox(
-                              // height: Dimensions.height10 * 7,
-                              // width: Dimensions.width10 * 10,
-                              child: Column(
-                                children: [
-                                  TextFormField(
-                                    keyboardType: TextInputType.number,
+        body: Container(
+          decoration: MyParameters.backgroundImage,
+          child: Center(
+            child: Container(
+              height: Dimensions.height10 * 40,
+              width: Dimensions.width10 * 30,
+              // color: Colors.red,
+              child: Column(
+                children: [
+                  /// Form fields
+                  Form(
+                    key: _formKey,
+                    child: SizedBox(
+                        height: Dimensions.height10 * 25,
+                        width: Dimensions.width10 * 15,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: Dimensions.height10 * 22,
+                              width: Dimensions.width10 * 15,
+                              child: SizedBox(
+                                // height: Dimensions.height10 * 7,
+                                // width: Dimensions.width10 * 10,
+                                child: Column(
+                                  children: [
+                                    TextFormField(
+                                      style: MyParameters.whiteTextStyle,
+                                      cursorColor: MyColors.whiteColor,
+                                      keyboardType: TextInputType.number,
 
-                                    controller: listOfTextControllers[0],
-                                    decoration: InputDecoration(
-                                        hintText: listOfHints[0]),
-                                    // The validator receives the text that the user has entered.
-                                    validator: (value) {
-                                      if (value == null || value.isEmpty) {
-                                        return listOfHints[0];
-                                      }
-                                      return null;
-                                    },
-                                  ),
-                                  TextFormField(
-                                    keyboardType: TextInputType.number,
-                                    controller: listOfTextControllers[1],
-                                    decoration: InputDecoration(
-                                        hintText: listOfHints[1]),
-                                    // The validator receives the text that the user has entered.
-                                    validator: (value) {
-                                      if (value == null || value.isEmpty) {
-                                        return listOfHints[1];
-                                      }
-                                      return null;
-                                    },
-                                  ),
-                                  TextFormField(
-                                    keyboardType: TextInputType.number,
-                                    controller: listOfTextControllers[2],
-                                    decoration: InputDecoration(
-                                        hintText: listOfHints[2]),
-                                    // The validator receives the text that the user has entered.
-                                    validator: (value) {
-                                      if (value == null || value.isEmpty) {
-                                        return listOfHints[2];
-                                      }
-                                      return null;
-                                    },
-                                  ),
-                                ],
+                                      controller: listOfTextControllers[0],
+                                      decoration: InputDecoration(
+                                          enabledBorder: MyParameters.underlineBorder,
+                                          focusedBorder: MyParameters.underlineBorder,
+                                          hintText: listOfHints[0],
+                                          hintStyle:
+                                          TextStyle(color: MyColors.whiteColor)),
+                                      // The validator receives the text that the user has entered.
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return listOfHints[0];
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                    TextFormField(
+                                      style: MyParameters.whiteTextStyle,
+                                      cursorColor: MyColors.whiteColor,
+                                      keyboardType: TextInputType.number,
+                                      controller: listOfTextControllers[1],
+                                      decoration: InputDecoration(
+                                          enabledBorder: MyParameters.underlineBorder,
+                                          focusedBorder: MyParameters.underlineBorder,
+                                          hintText: listOfHints[1],
+                                          hintStyle:
+                                          TextStyle(color: MyColors.whiteColor)),
+                                      // The validator receives the text that the user has entered.
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return listOfHints[1];
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                    TextFormField(
+                                      style: MyParameters.whiteTextStyle,
+                                      cursorColor: MyColors.whiteColor,
+                                      keyboardType: TextInputType.number,
+                                      controller: listOfTextControllers[2],
+                                      decoration: InputDecoration(
+                                          enabledBorder: MyParameters.underlineBorder,
+                                          focusedBorder: MyParameters.underlineBorder,
+                                          hintText: listOfHints[2],
+                                          hintStyle:
+                                          TextStyle(color: MyColors.whiteColor)),
+                                      // The validator receives the text that the user has entered.
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return listOfHints[2];
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
+                          ],
+                        )),
+                  ),
+
+                  /// Update button
+                  ElevatedButton(
+                    style: ButtonStyle(
+                        backgroundColor:
+                            MaterialStatePropertyAll(MyColors.mainColor200),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: MyParameters.borderRadius20,
                           ),
-                        ],
-                      )),
-                ),
+                        )),
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        /// Current data
+                        currentUserHeight =
+                            int.parse(listOfTextControllers[0].text);
+                        currentUserWeight =
+                            double.parse(listOfTextControllers[1].text);
+                        currentUserAge = int.parse(listOfTextControllers[2].text);
 
-                /// Update button
-                ElevatedButton(
-                  style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStatePropertyAll(MyColors.mainColor200),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                        RoundedRectangleBorder(
-                          borderRadius: MyParameters.borderRadius20,
-                        ),
-                      )),
-                  onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
-                      /// Current data
-                      currentUserHeight =
-                          int.parse(listOfTextControllers[0].text);
-                      currentUserWeight =
-                          double.parse(listOfTextControllers[1].text);
-                      currentUserAge = int.parse(listOfTextControllers[2].text);
+                        /// New user data
+                        UserDataModel userData = UserDataModel(
+                            createdTime: DateTime.now(),
+                            age: int.parse(listOfTextControllers[2].text),
+                            height: int.parse(listOfTextControllers[0].text),
+                            weight: double.parse(listOfTextControllers[1].text),
+                            isMale: startUserGenger);
 
-                      /// New user data
-                      UserDataModel userData = UserDataModel(
-                          createdTime: DateTime.now(),
-                          age: int.parse(listOfTextControllers[2].text),
-                          height: int.parse(listOfTextControllers[0].text),
-                          weight: double.parse(listOfTextControllers[1].text),
-                          isMale: startUserGenger);
+                        /// Save new user data
+                        await DBHelper.instance
+                            .createUserData(tableUserData, userData);
 
-                      /// Save new user data
-                      await DBHelper.instance
-                          .createUserData(tableUserData, userData);
-
-                      /// Read all user weights
-                      UserData().sortUserWeightsPerMonth(Jiffy().month);
-                      Navigator.of(context)
-                          .pushNamed(CurrentSettingsPage().route);
-                    }
-                  },
-                  child: Text('Update',
-                      style: TextStyle(
-                          fontSize: MyParameters.bigFontSize,
-                          fontWeight: MyParameters.boldFont)),
-                ),
-              ],
+                        /// Read all user weights
+                        UserData().sortUserWeightsPerMonth(Jiffy().month);
+                        Navigator.of(context)
+                            .pushNamed(CurrentSettingsPage().route);
+                      }
+                    },
+                    child: Text('Update',
+                        style: TextStyle(
+                            fontSize: MyParameters.bigFontSize,
+                            fontWeight: MyParameters.boldFont)),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
